@@ -48,7 +48,8 @@ EXILE_UI = {
                 ],
                 'models': {
                     'Actividad': {'icon': 'event', 'group': 'Actividades'},
-                    'TipoActividad': {'icon': 'settings', 'group': 'Configuración'}
+                    'TipoActividad': {'icon': 'settings', 'group': 'Configuración'},
+                    'Lugar': {'icon': 'settings', 'group': 'Configuración'},
                 },
                 'menu-extra': [
                     {'name': 'Calendario', 'url': '/actividades/schedule/', 'icon': 'event', 'group': 'Actividades'}
@@ -77,6 +78,7 @@ MENU_ORDER = [
         'models': [
             'Actividad',
             'TipoActividad',
+            'Lugar'
         ],
         'menu-extra': [
             'Calendario'

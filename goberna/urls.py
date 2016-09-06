@@ -18,6 +18,6 @@ from django.contrib import admin
 from exile_ui.admin import admin_site
 
 urlpatterns = [
-    url(r'^admin/', admin_site.urls),
+    url(r'^dashboard/', admin_site.urls),
     url(r'^actividades/', include('actividades.urls')),
 ]

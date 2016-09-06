@@ -130,27 +130,19 @@ def activities(request, start, end, now):
 
     dates = []
     for act in acts:
-
+        if datetime.combine(act.fecha_de_ejecucion, datetime.min.time()) >= now:
+            color = act.tipo_de_actividad.color
+        else:
+            color = 'gray'
+        # end if
         if act.repetir_cada == 'no':
             dates.append({
                 'pk': act.id,
-                'color': act.tipo_de_actividad.color,
-                'title': "%s, %s" % (act.nombre, str(act.equipo)),
+                'color': color,
+                'title': "%s" % (act.nombre, ),
                 'now': now.strftime("%Y-%m-%d %I:%M%p"),
                 'start': act.fecha_de_ejecucion.strftime("%Y-%m-%d"),
                 "urli": reverse('admin:%s_%s_change' % (act._meta.app_label,  act._meta.model_name),  args=[act.pk]),
-                'equipo': {
-                    'nombre': act.equipo.nombre,
-                    'descripcion': act.equipo.descripcion,
-                    'turno': act.equipo.turno.nombre,
-                    'unidad': {
-                        'nombre': act.equipo.unidad.nombre,
-                        'planta': {
-                            'nombre': act.equipo.unidad.planta.nombre,
-                            'ciudad': act.equipo.unidad.planta.ciudad.nombre,
-                        }
-                    }
-                },
                 'type': 'Actividad'
             })
         else:
@@ -166,36 +158,15 @@ def activities(request, start, end, now):
             print 'end', end, type(end)
             while nextdate <= end:
                 nextdate = cron.get_next(datetime)
-                if nextdate >= now:
-                    color = act.tipo_de_actividad.color
-                else:
-                    color = 'gray'
-                # end if
-                form = formulario.Formulario.objects.filter(equipo = act.equipo).first()
-                if form:
-                    form = form.pk
-                # end if
+                
                 dates.append({
                     'pk': act.id,
                     'color': color,
                     'cron': str_cron,
-                    'title': "%s, %s" % (act.nombre, unicode(act.equipo)),
+                    'title': "%s" % (act.nombre, ),
                     'now': now.strftime("%Y-%m-%d %I:%M%p"),
                     'start': nextdate.strftime("%Y-%m-%d"),
                     "urli": reverse('admin:%s_%s_change' % (act._meta.app_label,  act._meta.model_name),  args=[act.pk]),
-                    'equipo': {
-                        'nombre': act.equipo.nombre,
-                        'descripcion': act.equipo.descripcion,
-                        'turno': act.equipo.turno.nombre,
-                        'unidad': {
-                            'nombre': act.equipo.unidad.nombre,
-                            'planta': {
-                                'nombre': act.equipo.unidad.planta.nombre,
-                                'ciudad': act.equipo.unidad.planta.ciudad.nombre,
-                            }
-                        },
-                        'formulario': form
-                    },
                     'type': 'Actividad'
                 })
             # end while
