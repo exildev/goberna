@@ -19,6 +19,6 @@ class CiudadanoAdmin(AdminImageMixin, admin.ModelAdmin):
     # end class
 # end class
 
-
+admin_site.register(models.Departamento)
 admin_site.register(models.Municipio)
 admin_site.register(models.Ciudadano, CiudadanoAdmin)

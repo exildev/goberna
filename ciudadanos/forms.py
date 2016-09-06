@@ -40,26 +40,4 @@ class CiudadanoForm(UserCreationForm):
             return imagen
         # end if
     # end def
-
-    def save(self, commit=True):
-        usuario = super(CiudadanoForm, self).save(commit)
-        usuario.is_staff = True
-        grupo, created = Group.objects.get_or_create(name="Ciudadanos")
-        """
-        if created:
-            add = Permission.objects.filter(name="Can add reporte").first()
-            change = Permission.objects.filter(
-                name="Can change reporte").first()
-            fotos = Permission.objects.filter(
-                name__icontains="Foto de reporte")
-            grupo.permissions.add(add, change)
-            for f in fotos:
-                grupo.permissions.add(f)
-            # end for
-            grupo.save()
-        usuario.save()
-        usuario.groups.add(grupo)
-        """
-        return usuario
-    # end def
 # end class

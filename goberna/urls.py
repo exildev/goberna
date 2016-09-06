@@ -22,9 +22,12 @@ import settings
 
 
 urlpatterns = [
-    url(r'^$', RedirectView.as_view(url='/dashboard', permanent=True)),
+    #url(r'^$', RedirectView.as_view(url='/dashboard', permanent=True)),
     url(r'^dashboard/', admin_site.urls),
     url(r'^actividades/', include('actividades.urls')),
+    url(r'^ciudadanos/', include('ciudadanos.urls')),
+    url(r'^servicios/', include('servicios.urls')),
+
 ]
 
 if settings.DEBUG:

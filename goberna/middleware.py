@@ -14,6 +14,7 @@ def get_current_request():
 def get_current_user():
     """ returns the current user, if exist, otherwise returns None """
     request = get_current_request()
+
     if request:
         return getattr(request, "user", None)
 
@@ -25,5 +26,5 @@ class ThreadLocalMiddleware(object):
 
     def process_response(self, request, response):
         if hasattr(_thread_locals, 'request'):
-    del _thread_locals.request
+            del _thread_locals.request
         return response
