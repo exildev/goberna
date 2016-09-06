@@ -16,8 +16,17 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from exile_ui.admin import admin_site
+from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
+import settings
+
 
 urlpatterns = [
-    url(r'^admin/', admin_site.urls),
+    url(r'^$', RedirectView.as_view(url='/dashboard', permanent=True)),
+    url(r'^dashboard/', admin_site.urls),
     url(r'^actividades/', include('actividades.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -14,9 +14,9 @@ class TipoActividadAdmin(admin.ModelAdmin):
 
 class ActividadAdmin(admin.ModelAdmin):
     form = forms.ActividadForm
-    list_display = ('nombre', 'descripcion', 'equipo', 'tipo_de_actividad',
+    list_display = ('nombre', 'equipo', 'tipo_de_actividad',
                     'fecha_de_ejecucion', )
-    serarch_fields = ('nombre', 'descripcion',)
+    serarch_fields = ('nombre',)
     list_filter = ('tipo_de_actividad', ('fecha_de_ejecucion', DateRangeEX), )
 # end class
 
