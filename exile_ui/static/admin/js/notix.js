@@ -17,6 +17,7 @@ Notix.prototype = {
 			'url': '/notificaciones/connections/',
 			success: function (data) {
 				self.socket = io(data);
+				console.log(self.socket);
 				self.start(session_id);
 			}
 		});
@@ -43,7 +44,7 @@ Notix.prototype = {
 		});
 
 		this.socket.on('notix', function (message) {
-			console.log(message);
+			console.log('notix', message);
 			if (recive){
 				var noti = notification(message.data.html);
 				noti.onclick = function (){

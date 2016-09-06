@@ -22,8 +22,7 @@ import json
 def verify(request, session_id):
     session = Session.objects.get(session_key=session_id)
     uid = session.get_decoded().get('_auth_user_id')
-    usertypes = [usuarios.Asistente, usuarios.Gerente,
-                 usuarios.Piscinero, usuarios.Supervisor, usuarios.Cliente, User]
+    usertypes = [User]
     for tipo in usertypes:
         user = tipo.objects.filter(pk=uid).first()
         if user:
@@ -96,22 +95,10 @@ def calendar(request):
         # end try
     # end if
     key = request.GET.get('key', False)
-    piscinero = request.GET.get('piscinero', request.user.pk)
-    if request.user.is_authenticated():
-        piscinero = usuarios.Piscinero.objects.filter(pk = piscinero).first()
-    else:
-        piscinero = False
-    # end if
-    print piscinero
+    
     if start and end:
         if novedad_select == '0' or novedad_select == '1':
-            dates = dates + activities(request, start, end, now, piscinero)
-        # end if
-        if (novedad_select == '0' or novedad_select == '2') and not piscinero:
-            dates = dates + seguimientos(request, start, end, now)
-        # end if
-        if (novedad_select == '0' or novedad_select == '3') and not piscinero:
-            dates = dates + cumpleanios(request, start, end, now)
+            dates = dates + activities(request, start, end, now)
         # end if
     # end if
     return HttpResponse(json.dumps(dates, cls=DjangoJSONEncoder), content_type="application/json")
@@ -193,7 +180,7 @@ def cumpleanios(request, start, end, now):
 # end def
 
 
-def activities(request, start, end, now, piscinero):
+def activities(request, start, end, now, ):
     acts = actividades.Actividad.objects.all()
     tipo_selected = request.GET.get('tipo_selected', '0')
     
@@ -211,9 +198,7 @@ def activities(request, start, end, now, piscinero):
     if cliente != '0':
         acts = acts.filter(piscina__casa__cliente=int(cliente))
     # end if
-    if piscinero:
-        acts = acts.filter(piscina__asignacionpiscinero__piscinero=piscinero)
-    # end if
+    """
     acts = acts.extra({
         'piscinero':
             'select group_concat(piscinero_id) from usuarios_asignacionpiscinero where piscina_id=actividades_actividad.piscina_id ',
@@ -221,6 +206,7 @@ def activities(request, start, end, now, piscinero):
             'select group_concat(username) from usuarios_asignacionpiscinero join auth_user on piscina_id=actividades_actividad.piscina_id and auth_user.id = usuarios_asignacionpiscinero.piscinero_id'
 
     })
+    """
     dates = []
     for act in acts:
 
@@ -228,12 +214,10 @@ def activities(request, start, end, now, piscinero):
             dates.append({
                 'pk': act.id,
                 'color': act.tipo_de_actividad.color,
-                'title': "%s, %s" % (act.nombre, str(act.piscina)),
+                'title': "%s" % (act.nombre, ),
                 'now': now.strftime("%Y-%m-%d %I:%M%p"),
                 'start': act.fecha_de_ejecucion.strftime("%Y-%m-%d"),
-                "_send_to_": ['Piscinero'],
-                "users": act.users,
-                'piscineros': act.piscinero,
+                "_send_to_": ['User'],
                 "urli": reverse('admin:%s_%s_change' % (act._meta.app_label,  act._meta.model_name),  args=[act.pk]),
                 'type': 'Actividad'
             })
@@ -252,13 +236,11 @@ def activities(request, start, end, now, piscinero):
                     'pk': act.id,
                     'color': color,
                     'cron': str_cron,
-                    'title': "%s, %s" % (act.nombre, unicode(act.piscina)),
+                    'title': "%s" % (act.nombre, ),
                     'now': now.strftime("%Y-%m-%d %I:%M%p"),
                     'start': nextdate.strftime("%Y-%m-%d"),
-                    "_send_to_": ['Piscinero'],
-                    "users": act.users,
+                    "_send_to_": ['User'],
                     "urli": reverse('admin:%s_%s_change' % (act._meta.app_label,  act._meta.model_name),  args=[act.pk]),
-                    'piscineros': act.piscinero,
                     'type': 'Actividad'
                 })
             # end while
