@@ -45,7 +45,7 @@ EXILE_UI = {
             'page': '/media/piscix_logo/Icono-200px.png',
             'login': '/media/piscix_logo/Icono-s-t.png'
         },
-        'icons':{
+        'icons': {
             'actividades': {
                 'icon': 'directions_walk',
                 'groups': [
@@ -80,7 +80,7 @@ EXILE_UI = {
 
 MENU_ORDER = [
     {
-        'name':'actividades',
+        'name': 'actividades',
         'models': [
             'Actividad',
             'TipoActividad',
