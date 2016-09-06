@@ -6,9 +6,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-
-
-class Municipio(models.Model):
+class Departamento(models.Model):
     nombre = models.CharField(max_length=200)
 
     def __unicode__(self):
@@ -16,9 +14,18 @@ class Municipio(models.Model):
     # end def
 # end class
 
+class Municipio(models.Model):
+    nombre = models.CharField(max_length=200)
+    departamento = models.ForeignKey(Departamento)
+    
+    def __unicode__(self):
+        return u"%s" % (self.nombre)
+    # end def
+# end class
+
 
 class Ciudadano(User):
-    identificacion = models.CharField(max_length=200)
+    identificacion = models.CharField(max_length=200, unique=True)
     direccion = models.CharField(max_length=120, verbose_name="Dirección")
     telefono = models.CharField(
         max_length=15, verbose_name="Teléfono", blank=True, null=True)

@@ -62,7 +62,21 @@ EXILE_UI = {
                 ],
                 'models': {
                     'Ciudadano': {'icon': 'person', 'group': 'Personas'},
+                    'Departamento': {'icon': 'map','group': 'Personas' },
                     'Municipio': {'icon': 'terrain', 'group': 'Municipio'}
+                }
+            },
+            'servicios': {
+                'icon': 'accessibility',
+                'groups': [
+                    'Registro',
+                    'Pasaporte'
+                ],
+                'models': {
+                    'RegistroProS': {'icon': 'chrome_reader_mode', 'group': 'Registro'},
+                    'RegistroProN': {'icon': 'chrome_reader_mode', 'group': 'Registro'},
+                    'TarjetaPro': {'icon': 'account_box', 'group': 'Registro'},
+                    'Pasaporte': {'icon': 'airplanemode_active', 'group': 'Registro'},
                 }
             },
             'auth': {
@@ -97,7 +111,17 @@ MENU_ORDER = [
         'name':'ciudadanos',
         'models': [
             'Ciudadano',
+            'Departamento',
             'Municipio'
+        ]
+    },
+    {
+        'name': 'servicios',
+        'models': [
+            'RegistroProS',
+            'RegistroProN',
+            'TarjetaPro',
+            'Pasporte'
         ]
     },
     {
@@ -128,6 +152,7 @@ INSTALLED_APPS = [
     'personal',
     'ciudadanos',
     'actividades',
+    'servicios'
 ]
 
 MIDDLEWARE = [
