@@ -55,6 +55,29 @@ EXILE_UI = {
                     {'name': 'Calendario', 'url': '/actividades/schedule/', 'icon': 'event', 'group': 'Actividades'}
                 ]
             },
+            'personal': {
+                'icon': 'directions_walk',
+                'groups': [
+                    'Empleados'
+                ],
+                'models': {
+                    'Empleado': {'icon': 'event', 'group': 'Empleados'},
+                    'Departamento': {'icon': 'event', 'group': 'Empleados'},
+                    'Cargo': {'icon': 'event', 'group': 'Empleados'},
+                    'Jefes': {'icon': 'event', 'group': 'Empleados'},
+                }
+
+            },
+            'question': {
+                'icon': 'directions_walk',
+                'groups': [
+                    'Preguntas'
+                ],
+                'models': {
+                    'Pregunta': {'icon': 'event', 'group': 'Empleados'}
+                }
+
+            },
             'auth': {
                 'icon': 'security',
                 'groups': [
@@ -74,6 +97,18 @@ EXILE_UI = {
 
 MENU_ORDER = [
     {
+        'name': 'personal',
+        'models': [
+            'Empleado',
+            'Departamento',
+            'Cargo',
+            'Jefes'
+        ],
+        'menu-extra': [
+            'Calendario'
+        ]
+    },
+    {
         'name':'actividades',
         'models': [
             'Actividad',
@@ -82,6 +117,12 @@ MENU_ORDER = [
         ],
         'menu-extra': [
             'Calendario'
+        ]
+    },
+    {
+        'name': 'question',
+        'models': [
+            'Pregunta'
         ]
     },
     {
@@ -107,10 +148,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'nested_admin',
     'fullcalendar',
     'supra',
     'personal',
     'actividades',
+    'question',
 ]
 
 MIDDLEWARE = [
@@ -149,8 +192,14 @@ WSGI_APPLICATION = 'goberna.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        # Or path to database file if using sqlite3.
+        'NAME': 'alcaldia',
+        # The following settings are not used with sqlite3:
+        'USER': 'postgres',
+        'PASSWORD': '123456',
+        'HOST': '127.0.0.1',
     }
 }
 

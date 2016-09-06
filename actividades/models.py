@@ -30,7 +30,6 @@ class Actividad(models.Model):
     nombre = models.CharField(max_length=100)
     lugar = models.ForeignKey(Lugar, null=True)
     objeto = models.TextField("Objeto de la reunión", max_length=400)
-    personal = models.ForeignKey(personal.Personal)
     tipo_de_actividad = models.ForeignKey(TipoActividad, verbose_name="Tipo de reunion")
     fecha_de_ejecucion = models.DateField()
     repetir_cada = models.TextField(default=0)

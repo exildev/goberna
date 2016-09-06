@@ -20,4 +20,7 @@ from exile_ui.admin import admin_site
 urlpatterns = [
     url(r'^dashboard/', admin_site.urls),
     url(r'^actividades/', include('actividades.urls')),
+    url(r'^preguntas/', include('question.urls', namespace='pregunta')),
+    url(r'^nested_admin/', include('nested_admin.urls')),
+
 ]
