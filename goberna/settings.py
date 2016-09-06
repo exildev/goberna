@@ -27,6 +27,12 @@ SECRET_KEY = '1m60qc#1cqw+v++*mgt@k76rh(^e(42_dar&#=w1=b$c7u&!uw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'mariobarrios@exile.com.co'
+EMAIL_HOST_PASSWORD = 'rrljhuvayivgzmms'
 ALLOWED_HOSTS = []
 
 EXILE_UI = {
@@ -39,7 +45,7 @@ EXILE_UI = {
             'page': '/media/piscix_logo/Icono-200px.png',
             'login': '/media/piscix_logo/Icono-s-t.png'
         },
-        'icons':{
+        'icons': {
             'actividades': {
                 'icon': 'directions_walk',
                 'groups': [
@@ -48,7 +54,8 @@ EXILE_UI = {
                 ],
                 'models': {
                     'Actividad': {'icon': 'event', 'group': 'Actividades'},
-                    'TipoActividad': {'icon': 'settings', 'group': 'Configuración'}
+                    'TipoActividad': {'icon': 'settings', 'group': 'Configuración'},
+                    'Lugar': {'icon': 'settings', 'group': 'Configuración'},
                 },
                 'menu-extra': [
                     {'name': 'Calendario', 'url': '/actividades/schedule/', 'icon': 'event', 'group': 'Actividades'}
@@ -98,10 +105,11 @@ EXILE_UI = {
 
 MENU_ORDER = [
     {
-        'name':'actividades',
+        'name': 'actividades',
         'models': [
             'Actividad',
             'TipoActividad',
+            'Lugar'
         ],
         'menu-extra': [
             'Calendario'
@@ -141,6 +149,7 @@ MENU_ORDER = [
 
 INSTALLED_APPS = [
     'exile_ui',
+    'notificaciones',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -163,6 +172,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'notificaciones.triggers.Middleware'
 ]
 
 ROOT_URLCONF = 'goberna.urls'
