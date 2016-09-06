@@ -20,4 +20,6 @@ from exile_ui.admin import admin_site
 urlpatterns = [
     url(r'^dashboard/', admin_site.urls),
     url(r'^actividades/', include('actividades.urls')),
+    url(r'^notificaciones/', include('notificaciones.urls')),
+    url(r'^personal/', include('personal.urls')),
 ]
