@@ -24,16 +24,12 @@ import settings
 urlpatterns = [
     url(r'^dashboard/', admin_site.urls),
     url(r'^actividades/', include('actividades.urls')),
-<<<<<<< HEAD
     url(r'^preguntas/', include('question.urls', namespace='pregunta')),
     url(r'^nested_admin/', include('nested_admin.urls')),
-
-=======
     url(r'^notificaciones/', include('notificaciones.urls')),
     url(r'^personal/', include('personal.urls')),
     url(r'^ciudadanos/', include('ciudadanos.urls')),
     url(r'^servicios/', include('servicios.urls')),
->>>>>>> 26ac87668838a80b92745facdf2cc4fbab049017
 ]
 
 if settings.DEBUG:

@@ -3,10 +3,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from exile_ui.widgets import DatePickerWidget
-from django_select2.forms import (
-    HeavySelect2MultipleWidget, HeavySelect2Widget, ModelSelect2TagWidget,
-    ModelSelect2Widget, Select2Widget
-)
 import models
 
 

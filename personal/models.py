@@ -55,6 +55,11 @@ class Jefes(models.Model):
     empleado = models.OneToOneField(Empleado, unique=True)
     departamento = models.OneToOneField(Departamento, unique=True)
 
+    class Meta:
+        verbose_name = "Jefe"
+        verbose_name_plural = "Jefes"
+    # end class
+    
     def __unicode__(self):
         return u'%s es jefe del departamento %s ' % (str(self.empleado), str(self.departamento), )
     # end def

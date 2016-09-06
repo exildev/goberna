@@ -36,8 +36,8 @@ EMAIL_HOST_PASSWORD = 'rrljhuvayivgzmms'
 ALLOWED_HOSTS = []
 
 EXILE_UI = {
-    'site_title': 'Rondax',
-    'site_header': 'Rondax',
+    'site_title': 'Gobernación',
+    'site_header': 'Gobernación',
     'index_title': 'Software para las rondas operativos',
     'media': {
         'logo': {
@@ -62,25 +62,25 @@ EXILE_UI = {
                 ]
             },
             'personal': {
-                'icon': 'directions_walk',
+                'icon': 'face',
                 'groups': [
                     'Empleados'
                 ],
                 'models': {
-                    'Empleado': {'icon': 'event', 'group': 'Empleados'},
-                    'Departamento': {'icon': 'event', 'group': 'Empleados'},
-                    'Cargo': {'icon': 'event', 'group': 'Empleados'},
-                    'Jefes': {'icon': 'event', 'group': 'Empleados'},
+                    'Empleado': {'icon': 'people', 'group': 'Empleados'},
+                    'Departamento': {'icon': 'domain', 'group': 'Empleados'},
+                    'Cargo': {'icon': 'filter_frames', 'group': 'Empleados'},
+                    'Jefes': {'icon': 'person_pin', 'group': 'Empleados'},
                 }
 
             },
             'question': {
-                'icon': 'directions_walk',
+                'icon': 'help',
                 'groups': [
                     'Preguntas'
                 ],
                 'models': {
-                    'Pregunta': {'icon': 'event', 'group': 'Empleados'}
+                    'Pregunta': {'icon': 'help', 'group': 'Preguntas'}
                 }
             },
             'ciudadanos': {
@@ -202,7 +202,7 @@ INSTALLED_APPS = [
     'personal',
     'ciudadanos',
     'actividades',
-    'question',
+    'question.apps.QuestionConfig',
     'servicios'
 ]
 
@@ -249,8 +249,8 @@ DATABASES = {
         'NAME': 'alcaldia',
         # The following settings are not used with sqlite3:
         'USER': 'postgres',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
+        'PASSWORD': 'Exile*74522547',
+        'HOST': '104.236.33.228',
     }
 }
 
