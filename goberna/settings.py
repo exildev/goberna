@@ -61,7 +61,6 @@ EXILE_UI = {
                     {'name': 'Calendario', 'url': '/actividades/schedule/', 'icon': 'event', 'group': 'Actividades'}
                 ]
             },
-<<<<<<< HEAD
             'personal': {
                 'icon': 'directions_walk',
                 'groups': [
@@ -83,8 +82,7 @@ EXILE_UI = {
                 'models': {
                     'Pregunta': {'icon': 'event', 'group': 'Empleados'}
                 }
-
-=======
+            },
             'ciudadanos': {
                 'icon': 'people',
                 'groups': [
@@ -93,7 +91,7 @@ EXILE_UI = {
                 ],
                 'models': {
                     'Ciudadano': {'icon': 'person', 'group': 'Personas'},
-                    'Departamento': {'icon': 'map','group': 'Personas' },
+                    'Departamento': {'icon': 'map', 'group': 'Personas'},
                     'Municipio': {'icon': 'terrain', 'group': 'Municipio'}
                 }
             },
@@ -109,7 +107,6 @@ EXILE_UI = {
                     'TarjetaPro': {'icon': 'account_box', 'group': 'Registro'},
                     'Pasaporte': {'icon': 'airplanemode_active', 'group': 'Registro'},
                 }
->>>>>>> 26ac87668838a80b92745facdf2cc4fbab049017
             },
             'auth': {
                 'icon': 'security',
@@ -130,7 +127,6 @@ EXILE_UI = {
 
 MENU_ORDER = [
     {
-<<<<<<< HEAD
         'name': 'personal',
         'models': [
             'Empleado',
@@ -143,10 +139,7 @@ MENU_ORDER = [
         ]
     },
     {
-        'name':'actividades',
-=======
         'name': 'actividades',
->>>>>>> 26ac87668838a80b92745facdf2cc4fbab049017
         'models': [
             'Actividad',
             'TipoActividad',
@@ -157,12 +150,13 @@ MENU_ORDER = [
         ]
     },
     {
-<<<<<<< HEAD
         'name': 'question',
         'models': [
             'Pregunta'
-=======
-        'name':'ciudadanos',
+        ]
+    },
+    {
+        'name': 'ciudadanos',
         'models': [
             'Ciudadano',
             'Departamento',
@@ -176,7 +170,6 @@ MENU_ORDER = [
             'RegistroProN',
             'TarjetaPro',
             'Pasporte'
->>>>>>> 26ac87668838a80b92745facdf2cc4fbab049017
         ]
     },
     {
@@ -209,11 +202,8 @@ INSTALLED_APPS = [
     'personal',
     'ciudadanos',
     'actividades',
-<<<<<<< HEAD
     'question',
-=======
     'servicios'
->>>>>>> 26ac87668838a80b92745facdf2cc4fbab049017
 ]
 
 MIDDLEWARE = [
