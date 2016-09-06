@@ -27,6 +27,12 @@ SECRET_KEY = '1m60qc#1cqw+v++*mgt@k76rh(^e(42_dar&#=w1=b$c7u&!uw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'mariobarrios@exile.com.co'
+EMAIL_HOST_PASSWORD = 'rrljhuvayivgzmms'
 ALLOWED_HOSTS = []
 
 EXILE_UI = {
@@ -39,7 +45,7 @@ EXILE_UI = {
             'page': '/media/piscix_logo/Icono-200px.png',
             'login': '/media/piscix_logo/Icono-s-t.png'
         },
-        'icons':{
+        'icons': {
             'actividades': {
                 'icon': 'directions_walk',
                 'groups': [
@@ -55,6 +61,7 @@ EXILE_UI = {
                     {'name': 'Calendario', 'url': '/actividades/schedule/', 'icon': 'event', 'group': 'Actividades'}
                 ]
             },
+<<<<<<< HEAD
             'personal': {
                 'icon': 'directions_walk',
                 'groups': [
@@ -77,6 +84,32 @@ EXILE_UI = {
                     'Pregunta': {'icon': 'event', 'group': 'Empleados'}
                 }
 
+=======
+            'ciudadanos': {
+                'icon': 'people',
+                'groups': [
+                    'Personas',
+                    'Municipio'
+                ],
+                'models': {
+                    'Ciudadano': {'icon': 'person', 'group': 'Personas'},
+                    'Departamento': {'icon': 'map','group': 'Personas' },
+                    'Municipio': {'icon': 'terrain', 'group': 'Municipio'}
+                }
+            },
+            'servicios': {
+                'icon': 'accessibility',
+                'groups': [
+                    'Registro',
+                    'Pasaporte'
+                ],
+                'models': {
+                    'RegistroProS': {'icon': 'chrome_reader_mode', 'group': 'Registro'},
+                    'RegistroProN': {'icon': 'chrome_reader_mode', 'group': 'Registro'},
+                    'TarjetaPro': {'icon': 'account_box', 'group': 'Registro'},
+                    'Pasaporte': {'icon': 'airplanemode_active', 'group': 'Registro'},
+                }
+>>>>>>> 26ac87668838a80b92745facdf2cc4fbab049017
             },
             'auth': {
                 'icon': 'security',
@@ -97,6 +130,7 @@ EXILE_UI = {
 
 MENU_ORDER = [
     {
+<<<<<<< HEAD
         'name': 'personal',
         'models': [
             'Empleado',
@@ -110,6 +144,9 @@ MENU_ORDER = [
     },
     {
         'name':'actividades',
+=======
+        'name': 'actividades',
+>>>>>>> 26ac87668838a80b92745facdf2cc4fbab049017
         'models': [
             'Actividad',
             'TipoActividad',
@@ -120,9 +157,26 @@ MENU_ORDER = [
         ]
     },
     {
+<<<<<<< HEAD
         'name': 'question',
         'models': [
             'Pregunta'
+=======
+        'name':'ciudadanos',
+        'models': [
+            'Ciudadano',
+            'Departamento',
+            'Municipio'
+        ]
+    },
+    {
+        'name': 'servicios',
+        'models': [
+            'RegistroProS',
+            'RegistroProN',
+            'TarjetaPro',
+            'Pasporte'
+>>>>>>> 26ac87668838a80b92745facdf2cc4fbab049017
         ]
     },
     {
@@ -142,6 +196,7 @@ MENU_ORDER = [
 
 INSTALLED_APPS = [
     'exile_ui',
+    'notificaciones',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -152,8 +207,13 @@ INSTALLED_APPS = [
     'fullcalendar',
     'supra',
     'personal',
+    'ciudadanos',
     'actividades',
+<<<<<<< HEAD
     'question',
+=======
+    'servicios'
+>>>>>>> 26ac87668838a80b92745facdf2cc4fbab049017
 ]
 
 MIDDLEWARE = [
@@ -164,6 +224,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'notificaciones.triggers.Middleware'
 ]
 
 ROOT_URLCONF = 'goberna.urls'
@@ -226,7 +287,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-CO'
 
 TIME_ZONE = 'UTC'
 
@@ -240,4 +301,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+# https://docs.djangoproject.com/en/1.10/howto/static-files/
+
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
