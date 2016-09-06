@@ -61,3 +61,24 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+#Sqlite
+*.sqlite3
+*.sqlite
+
+#Media
+media/*
+!media/no-imagen.png
+!media/no-imagen.svg
+!media/account.png
+!media/account.svg
+!media/piscix_logo/
+
+#Migrations
+**/migrations/*.py
+!**/migrations/__init__.py
+notificaciones/connections/connections.json
+
+Piscix/settings.py
+
+.directory

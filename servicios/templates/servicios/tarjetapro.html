@@ -1,0 +1,8 @@
+<form action="/servicios/tarjeta/pro/" method="post" enctype="multipart/form-data"><input type='hidden' name='csrfmiddlewaretoken' value='rPtiFpdFzU2prAYN47ZKsmZtx82lj0uPGham1UO8MavdfexQ6ik2nNbNzEcIkHqP'/>
+  {% csrf_token %}
+    {{form.as_ul}}
+    {% for fo in inlines %}
+        {{ fo.as_p }}
+    {% endfor %}
+    <input type="submit" value="Enviar"/>
+</form>

@@ -61,6 +61,31 @@ EXILE_UI = {
                     {'name': 'Calendario', 'url': '/actividades/schedule/', 'icon': 'event', 'group': 'Actividades'}
                 ]
             },
+            'ciudadanos': {
+                'icon': 'people',
+                'groups': [
+                    'Personas',
+                    'Municipio'
+                ],
+                'models': {
+                    'Ciudadano': {'icon': 'person', 'group': 'Personas'},
+                    'Departamento': {'icon': 'map','group': 'Personas' },
+                    'Municipio': {'icon': 'terrain', 'group': 'Municipio'}
+                }
+            },
+            'servicios': {
+                'icon': 'accessibility',
+                'groups': [
+                    'Registro',
+                    'Pasaporte'
+                ],
+                'models': {
+                    'RegistroProS': {'icon': 'chrome_reader_mode', 'group': 'Registro'},
+                    'RegistroProN': {'icon': 'chrome_reader_mode', 'group': 'Registro'},
+                    'TarjetaPro': {'icon': 'account_box', 'group': 'Registro'},
+                    'Pasaporte': {'icon': 'airplanemode_active', 'group': 'Registro'},
+                }
+            },
             'auth': {
                 'icon': 'security',
                 'groups': [
@@ -91,6 +116,23 @@ MENU_ORDER = [
         ]
     },
     {
+        'name':'ciudadanos',
+        'models': [
+            'Ciudadano',
+            'Departamento',
+            'Municipio'
+        ]
+    },
+    {
+        'name': 'servicios',
+        'models': [
+            'RegistroProS',
+            'RegistroProN',
+            'TarjetaPro',
+            'Pasporte'
+        ]
+    },
+    {
         'name': 'auth',
         'models': [
             'Group',
@@ -117,7 +159,9 @@ INSTALLED_APPS = [
     'fullcalendar',
     'supra',
     'personal',
+    'ciudadanos',
     'actividades',
+    'servicios'
 ]
 
 MIDDLEWARE = [
@@ -185,7 +229,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-CO'
 
 TIME_ZONE = 'UTC'
 
@@ -199,4 +243,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+# https://docs.djangoproject.com/en/1.10/howto/static-files/
+
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
