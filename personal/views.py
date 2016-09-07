@@ -14,7 +14,7 @@ class Login(supra.SupraSession):
 
 
 class PersonaListView(supra.SupraListView):
-	list_display = ['identificacion', 'direccion', 'fecha_nacimiento', 'telefono']
+	list_display = ['identificacion', 'direccion', 'fecha_nacimiento', 'telefono', 'first_name', 'last_name']
 	model = models.Persona
 # end class
 

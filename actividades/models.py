@@ -35,7 +35,7 @@ class Actividad(models.Model):
     repetir_cada = models.TextField(default=0)
     unidad_de_repeticion = models.IntegerField(choices=(
         (3, "Mes(es)", ), (4, "Año(s)", ), ), null=True, blank=True, default=3)
-    # Por cuando se repite
+    
 
     class Meta:
         verbose_name = "Reunión"
