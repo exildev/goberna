@@ -104,7 +104,7 @@ def calendar(request):
 
 def activities(request, start, end, now):
 
-    operario = personal.Personal.objects.filter(pk = request.user.pk)
+    operario = personal.Persona.objects.filter(pk = request.user.pk)
 
     acts = models.Actividad.objects.all()
     tipo_selected = request.GET.get('tipo_selected', '0')
@@ -158,7 +158,7 @@ def activities(request, start, end, now):
             print 'end', end, type(end)
             while nextdate <= end:
                 nextdate = cron.get_next(datetime)
-                
+
                 dates.append({
                     'pk': act.id,
                     'color': color,

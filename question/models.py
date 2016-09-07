@@ -9,7 +9,7 @@ from personal import models as personal
 class Pregunta(models.Model):
     email = models.EmailField()
     departamento = models.ForeignKey(personal.Departamento)
-    pregunta = models.CharField(max_length=2000)
+    pregunta = models.TextField(max_length=2000)
     respuesta = models.CharField(max_length=2000, blank=True, null=True)
     state = models.BooleanField(default=False)
 

@@ -38,12 +38,12 @@ ALLOWED_HOSTS = []
 EXILE_UI = {
     'site_title': 'Gobernación',
     'site_header': 'Gobernación',
-    'index_title': 'Software para las rondas operativos',
+    'index_title': '',
     'media': {
         'logo': {
-            'dashboard': '/media/piscix_logo/Icono-f-t.png',
-            'page': '/media/piscix_logo/Icono-200px.png',
-            'login': '/media/piscix_logo/Icono-s-t.png'
+            'dashboard': '/media/logo/icono.png',
+            'page': '/media/logo/governación.png',
+            'login': '/media/logo/icono.png'
         },
         'icons': {
             'actividades': {
@@ -214,7 +214,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'notificaciones.triggers.Middleware'
+    'notificaciones.triggers.Middleware',
+    'goberna.middleware.ThreadLocalMiddleware'
 ]
 
 ROOT_URLCONF = 'goberna.urls'
