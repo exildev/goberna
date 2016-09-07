@@ -23,11 +23,23 @@ class LoginSupra(supra.SupraSession):
             inline.save()
         # end for
         nex = self.request.GET.get('next', False)
-        print nex
         if nex:
             return HttpResponseRedirect(nex)
         return HttpResponseRedirect('/')
     # end def
+
+    def login(self, request, cleaned_data):
+		user = authenticate(username=cleaned_data['username'], password=cleaned_data['password'])
+		if user is not None:
+			exist_obj = self.model.objects.filter(pk = user.pk).count()
+			if exist_obj and user.is_active:
+				login(request, user)
+				return user
+			#end if
+		#end if
+		return HttpResponseRedirect('/ciudadanos/login/')
+	#end def
+
 
     def form_invalid(self, form):
         errors = dict(form.errors)
