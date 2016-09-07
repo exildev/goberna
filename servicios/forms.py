@@ -11,6 +11,18 @@ class RegisterProSForm(forms.ModelForm):
         exclude = ('ciudadano', 'tramitado')
     # end class
 
+    def clean(self):
+        if self.instance.pk == None:
+            ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
+            if ciudadano:
+                return super(RegisterProSForm, self).clean()
+            else:
+                raise forms.ValidationError(
+                    "Necesita tener una cuenta de ciudadano")
+            # end def
+        # end if
+    # end def
+
     def save(self, commit=False):
         pro = super(RegisterProSForm, self).save(commit)
         ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
@@ -27,6 +39,20 @@ class RegisterProNForm(forms.ModelForm):
         model = models.RegistroProN
         exclude = ('ciudadano', 'tramitado')
     # end class
+
+
+    def clean(self):
+        if self.instance.pk == None:
+            ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
+            if ciudadano:
+                return super(RegisterProSForm, self).clean()
+            else:
+                raise forms.ValidationError(
+                    "Necesita tener una cuenta de ciudadano")
+            # end def
+        # end if
+    # end def
+
 
     def save(self, commit=False):
         pro = super(RegisterProNForm, self).save(commit)
@@ -45,6 +71,20 @@ class TarjetaProForm(forms.ModelForm):
         exclude = ('ciudadano', 'tramitado')
     # end class
 
+
+    def clean(self):
+        if self.instance.pk == None:
+            ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
+            if ciudadano:
+                return super(RegisterProSForm, self).clean()
+            else:
+                raise forms.ValidationError(
+                    "Necesita tener una cuenta de ciudadano")
+            # end def
+        # end if
+    # end def
+
+
     def save(self, commit=False):
         pro = super(TarjetaProForm, self).save(commit)
         ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
@@ -62,6 +102,20 @@ class PasaporteForm(forms.ModelForm):
         exclude = ('ciudadano', 'tramitado')
     # end class
 
+
+    def clean(self):
+        if self.instance.pk == None:
+            ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
+            if ciudadano:
+                return super(RegisterProSForm, self).clean()
+            else:
+                raise forms.ValidationError(
+                    "Necesita tener una cuenta de ciudadano")
+            # end def
+        # end if
+    # end def
+
+    
     def save(self, commit=False):
         pro = super(PasaporteForm, self).save(commit)
         print "User", get_current_user()

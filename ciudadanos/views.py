@@ -2,6 +2,11 @@ from django.shortcuts import render, HttpResponseRedirect
 from supra import views as supra
 import forms
 import models
+from django.views.generic import TemplateView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, logout, authenticate
+
 
 # Create your views here.
 supra.SupraConf.ACCECC_CONTROL["allow"] = True
@@ -17,6 +22,10 @@ class LoginSupra(supra.SupraSession):
             inline.instance = instance
             inline.save()
         # end for
+        nex = self.request.GET.get('next', False)
+        print nex
+        if nex:
+            return HttpResponseRedirect(nex)
         return HttpResponseRedirect('/')
     # end def
 
@@ -36,3 +45,19 @@ class RegistroSupra(supra.SupraFormView):
     form_class = forms.CiudadanoForm
     template_name = "ciudadanos/registro.html"
 # end class
+
+
+class Menu(TemplateView):
+    template_name = "ciudadanos/menu.html"
+
+    @method_decorator(login_required(login_url="/ciudadanos/login/"))
+    def dispatch(self, request, *args, **kwargs):
+        return super(Menu, self).dispatch(request, *args, **kwargs)
+    # end def
+# end class
+
+
+def logoutCiudadano(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+# end def

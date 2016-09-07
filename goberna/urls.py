@@ -18,10 +18,13 @@ from django.contrib import admin
 from exile_ui.admin import admin_site
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
+from django.views.generic import TemplateView
+from ciudadanos import views
 import settings
 
 
 urlpatterns = [
+    url(r'^$', views.Menu.as_view()),
     url(r'^dashboard/', admin_site.urls),
     url(r'^actividades/', include('actividades.urls')),
     url(r'^preguntas/', include('question.urls', namespace='pregunta')),
