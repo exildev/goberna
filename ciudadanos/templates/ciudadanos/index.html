@@ -4,11 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title%}Gobernación de Bolivar{%endblock%}</title>
-    <link rel="stylesheet" href="{% static 'cuidadanos/css/general.css'%}" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'ciudadanos/css/general.css'%}" charset="utf-8">
 </head>
 <body>
     <div class="sheet">
-        {% block content %}{% endblock %}
+        {% block header %}
+        <div class="f header">
+            <div class="c2" style="min-width:200px">
+                <a href="/"><img src="/media/logo/governación.png" alt="Gobernación de Bolivar"></a>
+            </div>
+            <div class="c10">
+                <h1 class="center">{% block titulo %}{% endblock %}</h1>
+                <span class="right">{% block miga %}{% endblock %}<span style="padding:0 16px">|</span> <a href="/ciudadanos/logout/">Terminar Sesion</a></span>
+            </div>
+        </div>
+        {% endblock %}
+        <div class="f">
+
+            <div class="c12 vhcenter_content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
     </div>
 </body>
 </html>

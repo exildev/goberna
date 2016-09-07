@@ -1,8 +1,15 @@
+{% extends 'ciudadanos/index.html' %}
+{% block titulo %}Tarjetas Profesionales{% endblock %}
+{% block miga %}<a href="/">Inicio</a>{% endblock %}
+{% block content %}
 <form action="/servicios/tarjeta/pro/" method="post" enctype="multipart/form-data"><input type='hidden' name='csrfmiddlewaretoken' value='rPtiFpdFzU2prAYN47ZKsmZtx82lj0uPGham1UO8MavdfexQ6ik2nNbNzEcIkHqP'/>
   {% csrf_token %}
+  <ul>
     {{form.as_ul}}
     {% for fo in inlines %}
         {{ fo.as_p }}
     {% endfor %}
-    <input type="submit" value="Enviar"/>
+    <li><input type="submit" value="Enviar"/></li>
+    </ul>
 </form>
+{% endblock %}

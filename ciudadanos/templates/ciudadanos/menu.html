@@ -1,2 +1,31 @@
 {% extends 'ciudadanos/index.html' %}
-{% block content %}{% endblock %}
+{% block header %}
+<div class="f">
+
+    <div class="c12">
+        <div class="icono"></div>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<ul class="menu">
+    <li>
+        <a href="/servicios/registro/pro/si/">Registro profesional</a>
+    </li>
+    <li>
+        <a href="/servicios/registro/pro/no/">Registro profesional sin rural</a>
+    </li>
+    <li>
+        <a href="/servicios/registro/tarjeta/pro/">Tarjetas profesionales</a>
+    </li>
+    <li>
+        <a href="/servicios/registro/pasaporte/">Pasaporte</a>
+    </li>
+    <li>
+        <a href="/preguntas/add/">Preguntale al gobernador</a>
+    </li>
+    <li>
+        <a href="/ciudadanos/logout/">Terminar Sesion</a>
+    </li>
+</ul>
+{% endblock %}

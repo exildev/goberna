@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_ul }}
-    <input type="submit" value="Registrar" />
-    </form>
-</body>
-</html>
+{% extends 'ciudadanos/index.html' %}
+{% block titulo %}Preguntale al Goberbador{% endblock %}
+{% block miga %}<a href="/">Inicio</a>{% endblock %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <ul>
+      {{form.as_ul}}
+      {% for fo in inlines %}
+          {{ fo.as_p }}
+      {% endfor %}
+      <li><input type="submit" value="Enviar"/></li>
+      </ul>
+</form>
+{% endblock %}
