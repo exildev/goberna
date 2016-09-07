@@ -58,7 +58,7 @@ class LoginMovil(supra.SupraSession):
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
-        return super(LoginP, self).dispatch(request, *args, **kwargs)
+        return super(LoginMovil, self).dispatch(request, *args, **kwargs)
     # end def
 # end class
 
