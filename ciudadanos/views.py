@@ -29,24 +29,24 @@ class LoginSupra(supra.SupraSession):
     # end def
 
     def login(self, request, cleaned_data):
-		user = authenticate(username=cleaned_data['username'], password=cleaned_data['password'])
-		if user is not None:
-			exist_obj = self.model.objects.filter(pk = user.pk).count()
-			if exist_obj and user.is_active:
-				login(request, user)
-				return user
-			#end if
-		#end if
-		return HttpResponseRedirect('/ciudadanos/login/')
-	#end def
-
+        user = authenticate(username=cleaned_data[
+                            'username'], password=cleaned_data['password'])
+        if user is not None:
+            exist_obj = self.model.objects.filter(pk=user.pk).count()
+            if exist_obj and user.is_active:
+                login(request, user)
+                return user
+            # end if
+        # end if
+        return HttpResponseRedirect('/ciudadanos/login/')
+        # end def
 
     def form_invalid(self, form):
         errors = dict(form.errors)
         print errors
         for i in self.invalided_inilines:
-			errors['inlines'] = list(i.errors)
-		# end for
+            errors['inlines'] = list(i.errors)
+        # end for
         return render(self.request, self.template_name, {"form": form})
     # end def
 # end class

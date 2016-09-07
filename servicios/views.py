@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 supra.SupraConf.ACCECC_CONTROL["allow"] = True
 
+
 class RegistroProSSupra(supra.SupraFormView):
     model = models.RegistroProS
     template_name = "servicios/registropros.html"
@@ -18,6 +19,7 @@ class RegistroProSSupra(supra.SupraFormView):
         return super(RegistroProSSupra, self).dispatch(request, *args, **kwargs)
     # end def
 # end class
+
 
 class RegistroProNSupra(supra.SupraFormView):
     model = models.RegistroProN
@@ -51,5 +53,49 @@ class PasaporteSupra(supra.SupraFormView):
     @method_decorator(login_required(login_url="/ciudadanos/login/"))
     def dispatch(self, request, *args, **kwargs):
         return super(PasaporteSupra, self).dispatch(request, *args, **kwargs)
+    # end def
+# end class
+
+
+class RegistroProSList(supra.SupraListView):
+    model = models.RegistroProS
+    list_display = ['fecha', 'tramitado']
+
+    def get_queryset(self):
+        queryset = super(RegistroProSList, self).get_queryset()
+        return queryset.filter(ciudadano__id=self.request.user.pk)
+    # end def
+# end class
+
+
+class RegistroProNList(supra.SupraListView):
+    model = models.RegistroProN
+    list_display = ['fecha', 'tramitado']
+
+    def get_queryset(self):
+        queryset = super(RegistroProNList, self).get_queryset()
+        return queryset.filter(ciudadano__id=self.request.user.pk)
+    # end def
+# end class
+
+
+class TarjetaProList(supra.SupraListView):
+    model = models.TarjetaPro
+    list_display = ['fecha', 'tramitado']
+
+    def get_queryset(self):
+        queryset = super(TarjetaProList, self).get_queryset()
+        return queryset.filter(ciudadano__id=self.request.user.pk)
+    # end def
+# end class
+
+
+class PasaporteList(supra.SupraListView):
+    model = models.Pasaporte
+    list_display = ['fecha', 'tramitado']
+
+    def get_queryset(self):
+        queryset = super(PasaporteList, self).get_queryset()
+        return queryset.filter(ciudadano__id=self.request.user.pk)
     # end def
 # end class

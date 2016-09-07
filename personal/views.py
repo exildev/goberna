@@ -20,7 +20,7 @@ class PersonaListView(supra.SupraListView):
 
 class DepartamentoListView(supra.SupraListView):
 	model = models.Departamento
-	list_display = ['nombre', 'codigo', 'activo']
+	list_display = ['nombre', 'codigo', 'activo', 'pk']
 	list_filter = list_display
 
 # end class

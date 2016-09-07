@@ -8,6 +8,7 @@ class ProSAdmin(admin.ModelAdmin):
     list_display = ('ciudadano', 'diploma', 'acta', 'cedula', 'resolucion', 'rural', 'certificado', 'fecha', 'tramitado')
     search_fields = ('ciudadano__first_name', 'ciudadano__last_name', 'ciudadano__indentificacion')
     list_editable = ('tramitado',)
+    list_filter = list_editable
 # end class
 
 
@@ -15,6 +16,7 @@ class ProNAdmin(admin.ModelAdmin):
     list_display = ('ciudadano', 'diploma', 'acta', 'cedula', 'fecha', 'tramitado')
     search_fields = ('ciudadano__first_name', 'ciudadano__last_name', 'ciudadano__indentificacion')
     list_editable = ('tramitado',)
+    list_filter = list_editable
 # end class
 
 
@@ -22,6 +24,7 @@ class TarjetaAdmin(admin.ModelAdmin):
     list_display = ('ciudadano', 'registro', 'cedula', 'sellos', 'fecha', 'tramitado')
     search_fields = ('ciudadano__first_name', 'ciudadano__last_name', 'ciudadano__indentificacion')
     list_editable = ('tramitado',)
+    list_filter = list_editable
 # end class
 
 
@@ -29,6 +32,7 @@ class Pasaporte(admin.ModelAdmin):
     list_display = ('ciudadano', 'cedula', 'foto', 'fecha', 'tramitado')
     search_fields = ('ciudadano__first_name', 'ciudadano__last_name', 'ciudadano__indentificacion')
     list_editable = ('tramitado',)
+    list_filter = list_editable
 # end class
 
 
