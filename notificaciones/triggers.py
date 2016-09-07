@@ -50,9 +50,9 @@ class TriggerIOPlugin(object):
             def on_identify(message):
                 if not 'ID' in message:
                     obj = {
-                        'username': username, 
+                        'username': username,
                         'password': password,
-                        'usertype': usertype, 
+                        'usertype': usertype,
                         'django_id': session_key
                     }
                     ioplugin.emit('login', obj)
@@ -66,7 +66,6 @@ class TriggerIOPlugin(object):
             # end def
 
             def on_success_login():
-                print "login-success"
                 self.do_event(ioplugin)
             # end def
 
@@ -76,7 +75,6 @@ class TriggerIOPlugin(object):
             ioplugin.emit('identify', {'django_id': session_key, 'usertype': usertype})
             ioplugin.wait(seconds=1)
         # end def
-        print "Message: ", self.message
         Thread(target=waiter, args=(self.username, self.password,self.usertype, self.request.session.session_key)).start()
     # end def
 
@@ -164,7 +162,7 @@ class TriggerSMTPPlugin(object):
             msg = self.smtpplugin.EmailMultiAlternatives(subject, ".", self.sender, to)
             msg.attach_alternative(html, "text/html")
             msg.send()
-        # end def 
+        # end def
     # end def
 
 # end class
@@ -257,9 +255,7 @@ class triggers(object):
 
 
 def save_model(sender, instance, **kwargs):
-    print "save", triggers.times, sender
     if sender in triggers.times and triggers.times[sender] == 0:
-        print "save model", sender, kwargs['created']
         registries = triggers.get_registries(sender)
         for registry in registries:
             registry.init(triggers.request)
@@ -274,7 +270,6 @@ def save_model(sender, instance, **kwargs):
     # end if
 # end def
 
-print "save models"
 post_save.connect(save_model, dispatch_uid="save_model_for_all")
 
 class Middleware(object):
@@ -283,7 +278,6 @@ class Middleware(object):
     # end def
 
     def __call__(self, request):
-        print "trigger"
         triggers.request = request
         for model in triggers.times:
             triggers.times[model] = 0

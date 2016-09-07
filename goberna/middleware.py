@@ -14,17 +14,24 @@ def get_current_request():
 def get_current_user():
     """ returns the current user, if exist, otherwise returns None """
     request = get_current_request()
-
     if request:
         return getattr(request, "user", None)
 
 class ThreadLocalMiddleware(object):
-    """ Simple middleware that adds the request object in thread local stor    age."""
+    """ Simple middleware that adds the request object in thread local storage."""
 
-    def process_request(self, request):
+    def __init__(self, get_response):
+        self.get_response = get_response
+    # One-time configuration and initialization.
+
+    def __call__(self, request):
+        # Code to be executed for each request before
+        # the view (and later middleware) are called.
+
         _thread_locals.request = request
+        response = self.get_response(request)
 
-    def process_response(self, request, response):
-        if hasattr(_thread_locals, 'request'):
-            del _thread_locals.request
+        # Code to be executed for each request/response after
+        # the view is called.
+
         return response
