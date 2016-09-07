@@ -1,1 +1,0 @@
-/home/exile/Documentos/Proyectos/exildev/goberna/goberna/wsgi.py
