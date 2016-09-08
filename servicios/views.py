@@ -23,7 +23,7 @@ class RegistroProSSupra(supra.SupraFormView):
 
 class RegistroProNSupra(supra.SupraFormView):
     model = models.RegistroProN
-    template_name = "servicios/registropros.html"
+    template_name = "servicios/registropron.html"
     form_class = forms.RegisterProNForm
 
     @method_decorator(login_required(login_url="/ciudadanos/login/"))

@@ -2,14 +2,26 @@
 {% block titulo %}Pasaportes{% endblock %}
 {% block miga %}<a href="/">Inicio</a>{% endblock %}
 {% block content %}
-<form action="/servicios/registro/pasaporte/" method="post" enctype="multipart/form-data"><input type='hidden' name='csrfmiddlewaretoken' value='rPtiFpdFzU2prAYN47ZKsmZtx82lj0uPGham1UO8MavdfexQ6ik2nNbNzEcIkHqP'/>
-  {% csrf_token %}
-  <ul>
-    {{form.as_ul}}
-    {% for fo in inlines %}
-        {{ fo.as_p }}
-    {% endfor %}
-    <li><input type="submit" value="Enviar"/></li>
+<form action="/servicios/registro/pasaporte/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <ul>
+        <li>
+            <span>Copia ampliada (150) de la cedula de ciudadania:</span>
+            <div class="inp">
+                <input id="id_cedula" name="cedula" type="file" required />
+                <label for="id_cedula"><i class="micon">cloud_upload</i> <span>Seleccionar Archivo</span></label>
+            </div>
+        </li>
+        <li>
+            <span>Foto:</span>
+            <div class="inp">
+                <input id="id_foto" name="foto" type="file" required />
+                <label for="id_foto"><i class="micon">cloud_upload</i> <span>Seleccionar Archivo</span></label>
+            </div>
+        </li>
+        <li>
+            <input type="submit" value="Enviar"/>
+        </li>
     </ul>
 </form>
 {% endblock %}
