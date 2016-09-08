@@ -39,7 +39,7 @@ class ActividadFormView(supra.SupraFormView):
 
 class ActividadListView(supra.SupraListView):
     model = models.Actividad
-    list_display = ('nombre', 'descripacion', 'cliente',
+    list_display = ('nombre', 'descripacion', 'lugar', 'objeto',
                     'tipo_de_actividad', 'fecha_de_ejecucion', 'fecha_de_notificacion')
     serarch_fields = list_display
 # end class

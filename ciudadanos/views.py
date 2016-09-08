@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -52,6 +53,15 @@ class LoginSupra(supra.SupraSession):
 # end class
 
 
+class LoginMovil(supra.SupraSession):
+    model = models.Ciudadano
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(LoginMovil, self).dispatch(request, *args, **kwargs)
+    # end def
+# end class
+
 class RegistroSupra(supra.SupraFormView):
     model = models.Ciudadano
     form_class = forms.CiudadanoForm
@@ -73,3 +83,7 @@ def logoutCiudadano(request):
     logout(request)
     return HttpResponseRedirect('/')
 # end def
+
+
+class LoginSupra(supra.SupraSession):
+    model = models.Ciudadano
