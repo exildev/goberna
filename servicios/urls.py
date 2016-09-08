@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^list/pro/no/$', views.RegistroProNList.as_view(), name="registropronlist"),
     url(r'^list/tarjeta/pro/$', views.TarjetaProList.as_view(), name="tarjetaprolist"),
     url(r'^list/pasaporte/$', views.PasaporteList.as_view(), name="pasaportelist"),
+    url(r'^list/$', views.serviciosList, name="serviciosList"),
 ]

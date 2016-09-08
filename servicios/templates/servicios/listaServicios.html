@@ -1,0 +1,22 @@
+<ul>
+  {% for si in prosi %}
+    <li>
+      Registro profesional {% if si.tramitado %}Tramitado{% else %}En tramite{% endif %} <span>{{si.fecha|date:"D d M Y"}}</span>
+    </li>
+  {% endfor %}
+  {% for no in prono %}
+    <li>
+      Registro profesional sin rural {% if no.tramitado %}Tramitado{% else %}En tramite{% endif %} <span>{{no.fecha|date:"D d M Y"}}</span>
+    </li>
+  {% endfor %}
+  {% for tj in tarjeta %}
+    <li>
+      Registro profesional {% if tj.tramitado %}Tramitado{% else %}En tramite{% endif %} <span>{{tj.fecha|date:"D d M Y"}}</span>
+    </li>
+  {% endfor %}
+  {% for ps in pasaporte %}
+    <li>
+      Registro profesional {% if ps.tramitado %}Tramitado{% else %}En tramite{% endif %} <span>{{ps.fecha|date:"D d M Y"}}</span>
+    </li>
+  {% endfor %}
+</ul>

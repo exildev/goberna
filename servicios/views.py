@@ -99,3 +99,12 @@ class PasaporteList(supra.SupraListView):
         return queryset.filter(ciudadano__id=self.request.user.pk)
     # end def
 # end class
+
+
+def serviciosList(request):
+    prosi = models.RegistroProS.objects.filter(ciudadano__id=request.user.pk).values('fecha', 'tramitado')
+    prono = models.RegistroProN.objects.filter(ciudadano__id=request.user.pk).values('fecha', 'tramitado')
+    tarjeta = models.TarjetaPro.objects.filter(ciudadano__id=request.user.pk).values('fecha', 'tramitado')
+    pasaporte = models.Pasaporte.objects.filter(ciudadano__id=request.user.pk).values('fecha', 'tramitado')
+    return render(request, 'servicios/listaServicios.html', {'prosi': prosi, 'prono': prono, 'tarjeta': tarjeta, 'pasaporte':pasaporte})
+# end def
