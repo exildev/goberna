@@ -1,3 +1,313 @@
+@import "/static/admin/css/fonts.css";
+@import "/static/admin/css/material-inputs/input-text.css";
+html, body {
+    font-family: "PtSans", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: #e0f2f1;
+}
+input {
+    font-family: "PtSans", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    font-size: 18px;
+}
 *{
     box-sizing: border-box;
+}
+.f{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+li.c1, li.c2, li.c3, li.c4, li.c5, li.c6, li.c7, li.c8, li.c9, li.c10, li.c11, li.c12{
+    padding: 16px;
+    margin: 0;
+}
+
+.c1{
+    width: 8.33%;
+}
+.c2{
+    width: 16.66666667%;
+}
+.c3{
+    width: 25%;
+}
+.c4{
+    width: 33.33333333%;
+}
+.c5{
+    width: 41.66666667%;
+}
+.c6{
+    width: 50%
+}
+.c7{
+    width: 58.33333333%
+
+}
+.c8{
+    width: 66.66666667%
+
+}
+.c9{
+    width: 75%
+}
+.c10{
+    width: 83.33333333%
+
+}
+.c11{
+    width: 91.66666667%
+}
+.c12{
+    width: 100%
+}
+.vhcenter_content{
+    margin: 0;
+    padding: 16px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+ul > li{
+    padding: 8px 0;
+    min-width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: baseline;
+}
+
+ul > li > label{
+    width: 100%;
+}
+
+ul > li > span{
+    width: 15%;
+    margin: 8px;
+    min-width: 230px;
+    display: flex;
+    align-items: center;
+}
+
+ul > li > .helptext{
+    width: 100%
+}
+ul > li input, ul > li select{
+    padding: 7px;
+    width: 100%;
+}
+.helptext{
+    padding-top: 8px;
+    font-size: 14px;
+    color: #555;
+}
+ul > li input[type=submit]{
+    padding: 16px;
+    border: none;
+    color: white;
+    background: #009688;
+    box-shadow: 0 0 3px #ccc;
+}
+ul.menu {
+    text-align: center;
+}
+ul.menu >li:hover{
+    background: #ffd180;
+}
+ul.menu > li > a{
+    text-decoration: none;
+    color: white;
+}
+ul.menu > li{
+    width: inherit;
+    display: inline-block;
+    padding: 8px;
+    margin: 8px;
+    font-size: 30px;
+    background: #ffab40;
+    box-shadow: 0 0 3px #ccc;
+    border-radius: 2px;
+}
+.header{
+    color: white;
+    background: #4db6ac;
+    box-shadow: 0 0 12px #555;
+}
+.header a{
+    text-decoration: none;
+    color: white;
+}
+.right{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 0 16px;
+}
+.icono{
+    background-image: url('/media/logo/icono.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 600px;
+}
+
+
+input[type=file] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+input[type=file] + label {
+    /*max-width: 80%;*/
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    width: 237px;
+}
+
+.no-js input[type=file] + label {
+    display: none;
+}
+
+input[type=file]:focus + label,
+input[type=file].has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+input[type=file] + label * {
+    /* pointer-events: none; */
+}
+
+input[type=file] + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+input[type=file] + label {
+    color: #f1e5e6;
+    background-color: #4db6ac;
+    text-align: center;
+}
+
+input[type=file]:focus + label,
+input[type=file].has-focus + label,
+input[type=file] + label:hover {
+    background-color: #009688;
+}
+
+.micon{
+    font-size: 28px;
+    vertical-align: text-top;
+}
+
+.group {
+    margin-top: 20px;
+}
+
+/*.group .bar, .group, input, select, textarea{
+    width: 100% !important ;
+}*/
+
+.group input, .group textarea{
+    width: 100%;
+    background: transparent;
+}
+
+form{
+    margin-top: 16px;
+    max-width: 516px;
+    padding: 16px;
+    background: white;
+    border-radius: 2px;
+    box-shadow: 0 0 12px #555;
+}
+
+aside{
+    background: white;
+    height: 100%;
+}
+
+aside ul{
+    list-style: none;
+    width: 100%;
+    height: 100%;
+}
+
+aside ul > li{
+    width: 100%;
+    height: 48px;
+    border-bottom: 1px solid #ccc;
+    transition: background 1s;
+}
+.c2.as{
+    height: 100%;
+    min-width: 200px
+}
+
+aside ul > li > a{
+    display: block;
+    padding: 8px 16px;
+    color: #e13733;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+aside ul > li:hover{
+    background: #e13733;
+}
+aside ul > li:hover > a{
+    color: white;
+}
+
+.sheet{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    height: 100%;
+}
+.f.con{
+    flex: 2;
+}
+
+table{
+    width: 516px;
+    border-spacing: 2px;
+    border-collapse: collapse;
+}
+thead{
+    background: #009688;
+    color: white;
+
+}
+
+tbody{
+    background: white;
+}
+thead tr th, tbody tr td{
+    padding: 16px;
 }

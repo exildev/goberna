@@ -1,8 +1,34 @@
-<form action="/servicios/tarjeta/pro/" method="post" enctype="multipart/form-data"><input type='hidden' name='csrfmiddlewaretoken' value='rPtiFpdFzU2prAYN47ZKsmZtx82lj0uPGham1UO8MavdfexQ6ik2nNbNzEcIkHqP'/>
-  {% csrf_token %}
-    {{form.as_ul}}
-    {% for fo in inlines %}
-        {{ fo.as_p }}
-    {% endfor %}
-    <input type="submit" value="Enviar"/>
+{% extends 'ciudadanos/index.html' %}
+{% block titulo %}Tarjetas Profesionales{% endblock %}
+{% block miga %}<a href="/">Inicio</a>{% endblock %}
+{% block content %}
+<form action="/servicios/tarjeta/pro/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <ul>
+        <li>
+            <span>Registro profesional:</span>
+            <div class="inp">
+                <input id="id_registro" name="registro" type="file" required />
+                <label for="id_registro"><i class="micon">cloud_upload</i> <span>>Seleccionar Archivo</span></label>
+            </div>
+        </li>
+        <li>
+            <span>Copia ampliada (150) de la cedula de ciudadania:</span>
+            <div class="inp">
+                <input id="id_cedula" name="cedula" type="file" required />
+                <label for="id_cedula"><i class="micon">cloud_upload</i> <span>>Seleccionar Archivo</span></label>
+            </div>
+        </li>
+        <li>
+            <span>Copia de los sellos del diploma:</span>
+            <div class="inp">
+                <input id="id_sellos" name="sellos" type="file" required />
+                <label for="id_sellos"><i class="micon">cloud_upload</i><span>>Seleccionar Archivo</span></label>
+            </div>
+        </li>
+        <li>
+            <input type="submit" value="Enviar"/>
+        </li>
+    </ul>
 </form>
+{% endblock %}

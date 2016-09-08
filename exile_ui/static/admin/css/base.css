@@ -27,6 +27,7 @@ a:focus {
 }
 a img {
     border: none;
+    padding-left: 30px;
 }
 a.section:link, a.section:visited {
     color: #fff;

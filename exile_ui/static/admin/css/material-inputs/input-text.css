@@ -4,7 +4,7 @@
     position: relative;
     margin-bottom: 7px;
 }
-.group input {
+.group input, .group textarea {
     font-size: 18px;
     padding: 10px 0;
     display: block;
@@ -12,21 +12,23 @@
     border: none;
     border-bottom: 1px solid #4DB6AC;
 }
-.group input:focus {
+.group input:focus, .group textarea:focus {
     outline: none;
 }
 
-.group input:focus~ .bar:before, input:focus~ .bar:after {
+.group input:focus~ .bar:before, input:focus~ .bar:after,
+.group textarea:focus~ .bar:before, textarea:focus~ .bar:after {
     width: 50%;
 }
 
-.group input:focus~ label, .group input:valid~ label, .group input.valid~ label {
+.group input:focus~ label, .group input:valid~ label, .group input.valid~ label,
+.group textarea:focus~ label, .group textarea:valid~ label, .group textarea.valid~ label {
     top: -20px;
     font-size: 14px;
     color: #4DB6AC;
 }
 
-.group input:focus~ .highlight {
+.group input:focus~ .highlight, .group textarea:focus~ .highlight {
     -webkit-animation: inputHighlighter 0.3s ease;
     animation: inputHighlighter 0.3s ease;
 }

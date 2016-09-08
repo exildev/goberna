@@ -1,9 +1,42 @@
+{% extends 'ciudadanos/index.html' %}
+{% block titulo %}Registro de Cuenta{% endblock %}
+{% block aside %}{% endblock %}
+{% block class %}c12{% endblock %}
+{% block miga2 %} <a href="/">Login</a> {% endblock %}
+{% block content %}
 <form action="/registro/" method="post" enctype="multipart/form-data"><input type='hidden' name='csrfmiddlewaretoken' value='rPtiFpdFzU2prAYN47ZKsmZtx82lj0uPGham1UO8MavdfexQ6ik2nNbNzEcIkHqP'/>
   {% csrf_token %}
-    {{form.as_ul}}
-    {{form.media}}
-    {% for fo in inlines %}
-        {{ fo.as_p }}
-    {% endfor %}
-    <input type="submit" value="Enviar"/>
+  <ul class="f">
+        <li class="c12"><label for="id_username">Nombre de usuario:</label> <input autofocus="" id="id_username" maxlength="150" name="username" type="text" required /> <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span></li>
+        <li class="c6"><label for="id_password1">Contraseña:</label> <input id="id_password1" name="password1" type="password" required /></li>
+        <li class="c6"><label for="id_password2">Confirmar contraseña:</label> <input id="id_password2" name="password2" type="password" required /> <span class="helptext">Para verificar, ingrese la misma contraseña anterior.</span></li>
+        <li class="c12"><label for="id_email">Dirección de correo electrónico:</label> <input id="id_email" maxlength="254" name="email" type="email" /></li>
+        <li class="c6"><label for="id_first_name">Nombre:</label> <input id="id_first_name" maxlength="30" name="first_name" type="text" /></li>
+        <li class="c6"><label for="id_last_name">Apellidos:</label> <input id="id_last_name" maxlength="30" name="last_name" type="text" /></li>
+        <li class="c12"><label for="id_identificacion">Identificacion:</label> <input id="id_identificacion" name="identificacion" type="number" required /></li>
+        <li class="c6"><label for="id_fijo">Fijo:</label> <input id="id_fijo" maxlength="15" name="fijo" type="text" /></li>
+        <li class="c6"><label for="id_telefono">Teléfono:</label> <input id="id_telefono" name="telefono" type="number" /></li>
+        <li class="c12"><label for="id_fecha_nacimiento">Fecha de nacimiento:</label> <input class="date" id="id_fecha_nacimiento" name="fecha_nacimiento" type="text" required /></li>
+        <li class="c12">
+            <label for="id_municipio">Municipio:</label>
+            <select id="id_municipio" name="municipio" required>
+                <option value="" selected="selected">---------</option>
+                <option value="1">Cartagena</option>
+            </select>
+        </li>
+        <li class="c12"><label for="id_direccion">Dirección:</label> <input id="id_direccion" maxlength="120" name="direccion" type="text" required /></li>
+        <li class="c12">
+            <div class="inp">
+                <span>Imagen:</label>
+                <input id="id_imagen" name="imagen" type="file" />
+                <label for="id_cedula"><i class="micon">cloud_upload</i> <span>Seleccionar Archivo</span></label>
+            </div>
+        </li>
+        <li class="c12"><input type="submit" value="Enviar"/></li>
+    </ul>
 </form>
+<link href="/static/admin/css/bootstrap.css" type="text/css" media="all" rel="stylesheet" />
+<script type="text/javascript" src="/static/admin/js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="/static/admin/js/zebra_datepicker.js"></script>
+<script type="text/javascript" src="/static/admin/js/datepicker.js"></script>
+{% endblock %}

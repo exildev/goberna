@@ -13,7 +13,8 @@ class RegisterProSForm(forms.ModelForm):
 
     def clean(self):
         if self.instance.pk == None:
-            ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
+            ciudadano = ciudadanos.Ciudadano.objects.filter(
+                pk=get_current_user().pk).first()
             if ciudadano:
                 return super(RegisterProSForm, self).clean()
             else:
@@ -25,12 +26,12 @@ class RegisterProSForm(forms.ModelForm):
 
     def save(self, commit=False):
         pro = super(RegisterProSForm, self).save(commit)
-        ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
+        ciudadano = ciudadanos.Ciudadano.objects.filter(
+            pk=get_current_user().pk).first()
         pro.ciudadano = ciudadano
         pro.save()
     # end def
 # end class
-
 
 
 class RegisterProNForm(forms.ModelForm):
@@ -40,12 +41,12 @@ class RegisterProNForm(forms.ModelForm):
         exclude = ('ciudadano', 'tramitado')
     # end class
 
-
     def clean(self):
         if self.instance.pk == None:
-            ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
+            ciudadano = ciudadanos.Ciudadano.objects.filter(
+                pk=get_current_user().pk).first()
             if ciudadano:
-                return super(RegisterProSForm, self).clean()
+                return super(RegisterProNForm, self).clean()
             else:
                 raise forms.ValidationError(
                     "Necesita tener una cuenta de ciudadano")
@@ -53,15 +54,14 @@ class RegisterProNForm(forms.ModelForm):
         # end if
     # end def
 
-
     def save(self, commit=False):
         pro = super(RegisterProNForm, self).save(commit)
-        ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
+        ciudadano = ciudadanos.Ciudadano.objects.filter(
+            pk=get_current_user().pk).first()
         pro.ciudadano = ciudadano
         pro.save()
     # end def
 # end class
-
 
 
 class TarjetaProForm(forms.ModelForm):
@@ -71,12 +71,12 @@ class TarjetaProForm(forms.ModelForm):
         exclude = ('ciudadano', 'tramitado')
     # end class
 
-
     def clean(self):
         if self.instance.pk == None:
-            ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
+            ciudadano = ciudadanos.Ciudadano.objects.filter(
+                pk=get_current_user().pk).first()
             if ciudadano:
-                return super(RegisterProSForm, self).clean()
+                return super(TarjetaProForm, self).clean()
             else:
                 raise forms.ValidationError(
                     "Necesita tener una cuenta de ciudadano")
@@ -84,15 +84,14 @@ class TarjetaProForm(forms.ModelForm):
         # end if
     # end def
 
-
     def save(self, commit=False):
         pro = super(TarjetaProForm, self).save(commit)
-        ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
+        ciudadano = ciudadanos.Ciudadano.objects.filter(
+            pk=get_current_user().pk).first()
         pro.ciudadano = ciudadano
         pro.save()
     # end def
 # end class
-
 
 
 class PasaporteForm(forms.ModelForm):
@@ -102,12 +101,12 @@ class PasaporteForm(forms.ModelForm):
         exclude = ('ciudadano', 'tramitado')
     # end class
 
-
     def clean(self):
         if self.instance.pk == None:
-            ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
+            ciudadano = ciudadanos.Ciudadano.objects.filter(
+                pk=get_current_user().pk).first()
             if ciudadano:
-                return super(RegisterProSForm, self).clean()
+                return super(PasaporteForm, self).clean()
             else:
                 raise forms.ValidationError(
                     "Necesita tener una cuenta de ciudadano")
@@ -115,11 +114,11 @@ class PasaporteForm(forms.ModelForm):
         # end if
     # end def
 
-    
     def save(self, commit=False):
         pro = super(PasaporteForm, self).save(commit)
         print "User", get_current_user()
-        ciudadano = ciudadanos.Ciudadano.objects.filter(pk=get_current_user().pk).first()
+        ciudadano = ciudadanos.Ciudadano.objects.filter(
+            pk=get_current_user().pk).first()
         pro.ciudadano = ciudadano
         pro.save()
     # end def

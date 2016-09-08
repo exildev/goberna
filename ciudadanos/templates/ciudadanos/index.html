@@ -4,11 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title%}Gobernación de Bolivar{%endblock%}</title>
-    <link rel="stylesheet" href="{% static 'cuidadanos/css/general.css'%}" charset="utf-8">
+<script src="http://localhost:35729/livereload.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="{% static 'ciudadanos/css/general.css'%}" charset="utf-8">
+    <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 </head>
 <body>
     <div class="sheet">
-        {% block content %}{% endblock %}
+        {% block header %}
+        <div class="f header">
+            <div class="c2" style="min-width:200px">
+                <a href="/"><img src="/media/logo/governación.png" alt="Gobernación de Bolivar"></a>
+            </div>
+            <div class="c10">
+                <h1 class="center">{% block titulo %}{% endblock %}</h1>
+                <span class="right">{% block miga %}{% endblock %} {% block miga2 %}<span style="padding:0 16px">|</span><a href="/ciudadanos/logout/">Terminar Sesion</a>{% endblock %}</span>
+            </div>
+        </div>
+        {% endblock %}
+        <div class="f con">
+            {% block aside %}
+            <div class="c2 as">
+                <aside>
+                    <ul>
+                        <li>
+                            <a href="/servicios/registro/pro/si/">Registro profesional</a>
+                        </li>
+                        <li>
+                            <a href="/servicios/registro/pro/no/">Registro profesional sin rural</a>
+                        </li>
+                        <li>
+                            <a href="/servicios/registro/tarjeta/pro/">Tarjetas profesionales</a>
+                        </li>
+                        <li>
+                            <a href="/servicios/registro/pasaporte/">Pasaporte</a>
+                        </li>
+                        <li>
+                            <a href="/preguntas/add/">Preguntale al gobernador</a>
+                        </li>
+                        <li>
+                            <a href="/servicios/list/">Estado de tramites</a>
+                        </li>
+                        <li>
+                            <a href="/ciudadanos/logout/">Terminar Sesion</a>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+            {% endblock %}
+            <div class="{% block class%}c10{% endblock %} vhcenter_content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
     </div>
+    <script src="/static/ciudadanos/js/custom-file-input.js" charset="utf-8"></script>
+    <script src="/static/ciudadanos/js/jquery-v1.min.js" charset="utf-8"></script>
+    <script src="/static/ciudadanos/js/jquery.custom-file-input.js" charset="utf-8"></script>
 </body>
 </html>

@@ -169,7 +169,7 @@ MENU_ORDER = [
             'RegistroProS',
             'RegistroProN',
             'TarjetaPro',
-            'Pasporte'
+            'Pasaporte'
         ]
     },
     {

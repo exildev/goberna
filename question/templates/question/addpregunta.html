@@ -1,16 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_ul }}
-    <input type="submit" value="Registrar" />
-    </form>
-</body>
-</html>
+{% extends 'ciudadanos/index.html' %}
+{% block titulo %}Preguntale al Goberbador{% endblock %}
+{% block miga %}<a href="/">Inicio</a>{% endblock %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <ul>
+        <li>
+            <div class="group">
+                <input id="id_email" maxlength="254" name="email" type="email" required />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="id_email">Email:</label>
+            </div>
+        </li>
+        <li>
+            <label for="id_departamento">Departamento:</label>
+            <select id="id_departamento" name="departamento" required>
+                <option value="" selected="selected">---------</option>
+                <option value="1">Planeación</option>
+                <option value="2">Finanzas</option>
+            </select>
+        </li>
+        <li>
+            <div class="group">
+                <textarea cols="40" id="id_pregunta" maxlength="2000" name="pregunta" rows="10" required></textarea>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="id_pregunta">Pregunta:</label>
+            </div>
+        </li>
+        <li>
+            <input type="submit" value="Enviar"/>
+        </li>
+    </ul>
+</form>
+{% endblock %}
