@@ -1,5 +1,8 @@
 {% extends 'ciudadanos/index.html' %}
 {% block titulo %}Registro de Cuenta{% endblock %}
+{% block aside %}{% endblock %}
+{% block class %}c12{% endblock %}
+{% block miga2 %} <a href="/">Login</a> {% endblock %}
 {% block content %}
 <form action="/registro/" method="post" enctype="multipart/form-data"><input type='hidden' name='csrfmiddlewaretoken' value='rPtiFpdFzU2prAYN47ZKsmZtx82lj0uPGham1UO8MavdfexQ6ik2nNbNzEcIkHqP'/>
   {% csrf_token %}

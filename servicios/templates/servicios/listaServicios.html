@@ -1,22 +1,45 @@
-<ul>
-  {% for si in prosi %}
-    <li>
-      Registro profesional {% if si.tramitado %}Tramitado{% else %}En tramite{% endif %} <span>{{si.fecha|date:"D d M Y"}}</span>
-    </li>
-  {% endfor %}
-  {% for no in prono %}
-    <li>
-      Registro profesional sin rural {% if no.tramitado %}Tramitado{% else %}En tramite{% endif %} <span>{{no.fecha|date:"D d M Y"}}</span>
-    </li>
-  {% endfor %}
-  {% for tj in tarjeta %}
-    <li>
-      Registro profesional {% if tj.tramitado %}Tramitado{% else %}En tramite{% endif %} <span>{{tj.fecha|date:"D d M Y"}}</span>
-    </li>
-  {% endfor %}
-  {% for ps in pasaporte %}
-    <li>
-      Registro profesional {% if ps.tramitado %}Tramitado{% else %}En tramite{% endif %} <span>{{ps.fecha|date:"D d M Y"}}</span>
-    </li>
-  {% endfor %}
-</ul>
+{% extends 'ciudadanos/index.html' %}
+{% block titulo %}Estado de Tramites{% endblock %}
+{% block miga %}<a href="/">Inicio</a>{% endblock %}
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>Tramite</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for si in prosi %}
+        <tr>
+            <td>Registro profesional</td>
+            <td>{% if si.tramitado %}Tramitado{% else %}En tramite{% endif %}</td>
+            <td><span>{{si.fecha|date:"D d M Y"}}</span></td>
+        </tr>
+        {% endfor %}
+        {% for no in prono %}
+        <tr>
+            <td>Registro profesional sin rural</td>
+            <td>{% if no.tramitado %}Tramitado{% else %}En tramite{% endif %}</td>
+            <td><span>{{no.fecha|date:"D d M Y"}}</span></td>
+        </tr>
+        {% endfor %}
+        {% for tj in tarjeta %}
+        <tr>
+            <td>Registro profesional</td>
+            <td>{% if tj.tramitado %}Tramitado{% else %}En tramite{% endif %}</td>
+            <td><span>{{tj.fecha|date:"D d M Y"}}</span></td>
+        </tr>
+        {% endfor %}
+        {% for ps in pasaporte %}
+        <tr>
+            <td>Registro profesional</td>
+            <td>{% if ps.tramitado %}Tramitado{% else %}En tramite{% endif %}</td>
+            <td><span>{{ps.fecha|date:"D d M Y"}}</span></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+{% endblock %}
