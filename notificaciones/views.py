@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from actividades import models as actividades
 from django.contrib.auth.decorators import login_required
+from personal import models as personal
 
 import croniter
 import urllib2
@@ -26,6 +27,7 @@ def verify(request, session_id):
     for tipo in usertypes:
         user = tipo.objects.filter(pk=uid).first()
         if user:
+            print "http://%s:%d/?data=" % (HOST, WEB_PORT) + session_id
             socket_id = urllib2.urlopen(
                 "http://%s:%d/?data=" % (HOST, WEB_PORT) + session_id).read()
             response = {'socket_id': socket_id,
@@ -180,71 +182,32 @@ def cumpleanios(request, start, end, now):
 # end def
 
 
-def activities(request, start, end, now, ):
-    acts = actividades.Actividad.objects.all()
-    tipo_selected = request.GET.get('tipo_selected', '0')
-    
-    if tipo_selected != '0':
-        acts = acts.filter(tipo_de_actividad=int(tipo_selected))
-    # end if
-    
-    piscina = request.GET.get('piscina', '0')
-    
-    if piscina != '0':
-        acts = acts.filter(piscina=int(piscina))
-    # end if
-    
-    cliente = request.GET.get('cliente', '0')
-    if cliente != '0':
-        acts = acts.filter(piscina__casa__cliente=int(cliente))
-    # end if
-    """
-    acts = acts.extra({
-        'piscinero':
-            'select group_concat(piscinero_id) from usuarios_asignacionpiscinero where piscina_id=actividades_actividad.piscina_id ',
-        'users':
-            'select group_concat(username) from usuarios_asignacionpiscinero join auth_user on piscina_id=actividades_actividad.piscina_id and auth_user.id = usuarios_asignacionpiscinero.piscinero_id'
+def activities(request, start, end, now):
+    emplado = personal.Empleado.objects.filter(pk = request.user.pk)
 
-    })
-    """
+    acts = models.Actividad.objects.all()
+
+    if emplado and emplado.cargo:
+        acts = acts.filter(Q(departamentos__pk=emplado.cargo.departamento.pk) | Q(personas__pk=emplado.pk))
+    # end if
+
     dates = []
     for act in acts:
-
-        if act.repetir_cada == 'no':
-            dates.append({
-                'pk': act.id,
-                'color': act.tipo_de_actividad.color,
-                'title': "%s" % (act.nombre, ),
-                'now': now.strftime("%Y-%m-%d %I:%M%p"),
-                'start': act.fecha_de_ejecucion.strftime("%Y-%m-%d"),
-                "_send_to_": ['User'],
-                "urli": reverse('admin:%s_%s_change' % (act._meta.app_label,  act._meta.model_name),  args=[act.pk]),
-                'type': 'Actividad'
-            })
+        if datetime.combine(act.fecha_de_ejecucion, datetime.min.time()) >= now:
+            color = act.tipo_de_actividad.color
         else:
-            str_cron = get_cron(act)
-            cron = croniter.croniter(str_cron, datetime.combine(act.fecha_de_ejecucion, datetime.min.time()))
-            nextdate = start
-            while nextdate <= end:
-                nextdate = cron.get_next(datetime)
-                if nextdate >= now:
-                    color = act.tipo_de_actividad.color
-                else:
-                    color = 'gray'
-                # end if
-                dates.append({
-                    'pk': act.id,
-                    'color': color,
-                    'cron': str_cron,
-                    'title': "%s" % (act.nombre, ),
-                    'now': now.strftime("%Y-%m-%d %I:%M%p"),
-                    'start': nextdate.strftime("%Y-%m-%d"),
-                    "_send_to_": ['User'],
-                    "urli": reverse('admin:%s_%s_change' % (act._meta.app_label,  act._meta.model_name),  args=[act.pk]),
-                    'type': 'Actividad'
-                })
-            # end while
+            color = 'gray'
         # end if
+        dates.append({
+            'pk': act.id,
+            'color': color,
+            'title': "%s" % (act.nombre, ),
+            'now': now.strftime("%Y-%m-%d %I:%M%p"),
+            'start': act.fecha_de_ejecucion.strftime("%Y-%m-%d"),
+            "urli": reverse('admin:%s_%s_change' % (act._meta.app_label,  act._meta.model_name),  args=[act.pk]),
+            "lugar": act.lugar.nombre,
+            'type': 'Actividad'
+        })
     # end for
     return dates
 # end def

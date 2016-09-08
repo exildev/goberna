@@ -127,80 +127,9 @@ Calendario de actividades
 {% block content %}
 
 		<h1 class="head">
-			Calendario de actividsades
-			<a id="nueva" class="exbtn" href="/dashboard/actividades/actividad/add">Nueva actividad</a>
+			Calendario de reuniones
+			<a id="nueva" class="exbtn" href="/dashboard/actividades/actividad/add">Nueva reunión</a>
 		</h1>
-		<form method="get">
-			<section>
-				<div id="cl" class="group">
-					<input class="valid" placeholder="Select value" type="text" autocomplete="off">
-					<label>Turnos:</label>
-					<span class="highlight"></span>
-					<span class="bar"></span>
-					<i class="micon">arrow_drop_down</i>
-					<input{% if data.turno.0 == '0' %} checked{% endif %} id="todos_turnos" type="radio" name="turno" value="0">
-					<ul>
-						<li>
-							<label for="todos_turno_selected">Todos</label>
-							<input{% if data.turno.0 == '0' %} checked{% endif %} id="todos_turno_selected" type="radio" name="turno" value="0">
-						</li>
-						{%for turno in turnos%}
-						<li>
-							<label for="id{{turno.nombre}}">{{turno.nombre}}</label>
-							<input{% if data.turnoo.0 == turno.pk|stringformat:'i' %} checked{% endif %} value="{{turno.pk}}" type="radio" name="turno" id="id{{turno.nombre}}"/>
-						</li>
-						{% endfor %}
-					<ul>
-				</div>
-				<div id="ta" class="group">
-					<input readonly class="valid" placeholder="Select value" type="text" autocomplete="off">
-					<label>Tipo de actividad:</label>
-					<span class="highlight"></span>
-					<span class="bar"></span>
-					<i class="micon">arrow_drop_down</i>
-					<ul>
-						<li>
-							<label for="todos_tipo_selected">Todos</label>
-							<input{% if data.tipo_selected.0 == '0' %} checked{% endif %} id="todos_tipo_selected" type="radio" name="tipo_selected" value="0">
-						</li>
-						{%for tipo in tipos%}
-						<li>
-							<span class="color" style="background-color:{{tipo.color}}"></span>
-							<label for="id{{tipo.nombre}}">{{tipo.nombre}}</label>
-							<input{% if data.tipo_selected.0 == tipo.pk|stringformat:'i' %} checked{% endif %} value="{{tipo.pk}}" type="radio" name="tipo_selected" id="id{{tipo.nombre}}"/>
-						</li>
-						{% endfor %}
-					<ul>
-				</div>
-				<div id="ps" class="group">
-					<input class="valid" placeholder="Select value" type="text" autocomplete="off">
-					<label>Equipos:</label>
-					<span class="highlight"></span>
-					<span class="bar"></span>
-					<i class="micon">arrow_drop_down</i>
-					<input{% if data.equipo.0 == '0' %} checked{% endif %} id="todos_equipos" type="radio" name="equipo" value="0">
-					<ul>
-						<li>
-							<label for="todos_tipo_selected">Todos</label>
-							<input{% if data.equipo.0 == '0' %} checked{% endif %} id="todos_tipo_selected" type="radio" name="equipo" value="0">
-						</li>
-						{%for equipo in equipos%}
-						<li>
-							<!-- <span class="color" style="background-color:{{tipo.color}}"></span> -->
-							<label for="id{{equipo.nombre}}">{{equipo.nombre}}</label>
-							<input{% if data.equipo.0 == equipo.pk|stringformat:'i' %} checked{% endif %} value="{{equipo.pk}}" type="radio" name="equipo" id="id{{equipo.nombre}}"/>
-						</li>
-						{% endfor %}
-					<ul>
-				</div>
-				<div class="group">
-					<button>Buscar</button>
-				</div>
-				<div class="submit-row footer">
-					<br>
-				</div>
-			</section>
-		</form>
 
 		<script type="text/javascript">
 			var configure_calendar = {

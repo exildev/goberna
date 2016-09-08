@@ -32,10 +32,10 @@ class Actividad(models.Model):
     objeto = models.TextField("Objeto de la reunión", max_length=400)
     tipo_de_actividad = models.ForeignKey(TipoActividad, verbose_name="Tipo de reunion")
     fecha_de_ejecucion = models.DateField()
-    repetir_cada = models.TextField(default=0)
-    unidad_de_repeticion = models.IntegerField(choices=(
-        (3, "Mes(es)", ), (4, "Año(s)", ), ), null=True, blank=True, default=3)
-    
+    #repetir_cada = models.CharField(max_length=100, default=0)
+    #unidad_de_repeticion = models.IntegerField(choices=((3, "Mes(es)", ), (4, "Año(s)", ), ), null=True, blank=True, default=3)
+    departamentos = models.ManyToManyField(personal.Departamento, blank=True, )
+    personas = models.ManyToManyField(personal.Persona, blank=True, )
 
     class Meta:
         verbose_name = "Reunión"

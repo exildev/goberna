@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from django.shortcuts import render, HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -14,37 +16,55 @@ import croniter
 import urllib2
 import json
 from goberna.settings import EXILE_UI
+from django.db.models import Q
 
 
 class TipoActividadFormView(supra.SupraFormView):
     model = models.TipoActividad
     form_class = forms.TipoActividadForm
-
 # end class
-
 
 class TipoActividadListView(supra.SupraListView):
     model = models.TipoActividad
-    list_display = ('nombre', )
+    list_display = ('nombre', 'pk')
     serarch_fields = list_display
 # end class
 
+class LugarListView(supra.SupraListView):
+    model = models.Lugar
+    list_display = ('nombre', 'pk')
+    serarch_fields = list_display
+# end class
 
 class ActividadFormView(supra.SupraFormView):
     model = models.Actividad
     form_class = forms.ActividadForm
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ActividadFormView, self).dispatch(request, *args, **kwargs)
+    # end def
+# end class
 
+class ActividadFormEditView(supra.SupraFormView):
+    model = models.Actividad
+    form_class = forms.ActividadFormEdit
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ActividadFormEditView, self).dispatch(request, *args, **kwargs)
+    # end def
 # end class
 
 
 class ActividadListView(supra.SupraListView):
     model = models.Actividad
-    list_display = ('nombre', 'descripacion', 'cliente',
-                    'tipo_de_actividad', 'fecha_de_ejecucion', 'fecha_de_notificacion')
+    list_display = ('nombre', 'descripacion', 'cliente', 'tipo_de_actividad', 'fecha_de_ejecucion', 'fecha_de_notificacion')
     serarch_fields = list_display
 # end class
 
-
+class ActividadDetailView(supra.SupraDetailView):
+    model = models.Actividad
+    fields = ('nombre', 'tipo_de_actividad', 'fecha_de_ejecucion', 'departamentos', 'personas', 'lugar')
+# end class
 
 @login_required(login_url="/dashboard/login/")
 def schedule(request):
@@ -104,73 +124,31 @@ def calendar(request):
 
 def activities(request, start, end, now):
 
-    operario = personal.Persona.objects.filter(pk = request.user.pk)
+    emplado = personal.Empleado.objects.filter(pk = request.user.pk)
 
-    acts = models.Actividad.objects.all()
-    tipo_selected = request.GET.get('tipo_selected', '0')
-    equipo =  request.GET.get('equipo', '0')
-    turno = request.GET.get('turno', '0')
+    acts = models.Actividad.objects.all().order_by('fecha_de_ejecucion')
 
-    if operario:
-        acts = acts.filter(turno=operario.turno)
+    if emplado and emplado.cargo:
+        acts = acts.filter(Q(departamentos__pk=emplado.cargo.departamento.pk) | Q(personas__pk=emplado.pk))
     # end if
-
-    if tipo_selected != '0':
-        acts = acts.filter(tipo_de_actividad=int(tipo_selected))
-    # end if
-
-    if equipo != '0':
-        acts = acts.filter(equipo=int(equipo))
-    # end if
-
-    if turno != '0':
-        acts = acts.filter(equipo__turno=int(turno))
-    # end if
-
 
     dates = []
     for act in acts:
         if datetime.combine(act.fecha_de_ejecucion, datetime.min.time()) >= now:
             color = act.tipo_de_actividad.color
         else:
-            color = 'gray'
+            color = '#757575'
         # end if
-        if act.repetir_cada == 'no':
-            dates.append({
-                'pk': act.id,
-                'color': color,
-                'title': "%s" % (act.nombre, ),
-                'now': now.strftime("%Y-%m-%d %I:%M%p"),
-                'start': act.fecha_de_ejecucion.strftime("%Y-%m-%d"),
-                "urli": reverse('admin:%s_%s_change' % (act._meta.app_label,  act._meta.model_name),  args=[act.pk]),
-                'type': 'Actividad'
-            })
-        else:
-            str_cron = get_cron(act)
-            if datetime.combine(act.fecha_de_ejecucion, datetime.min.time()) > start:
-                fecha_init = act.fecha_de_ejecucion
-            else:
-                fecha_init = start
-            # end if
-            fecha_init = start
-            cron = croniter.croniter(str_cron, datetime.combine(fecha_init, datetime.min.time()))
-            nextdate = fecha_init
-            print 'end', end, type(end)
-            while nextdate <= end:
-                nextdate = cron.get_next(datetime)
-
-                dates.append({
-                    'pk': act.id,
-                    'color': color,
-                    'cron': str_cron,
-                    'title': "%s" % (act.nombre, ),
-                    'now': now.strftime("%Y-%m-%d %I:%M%p"),
-                    'start': nextdate.strftime("%Y-%m-%d"),
-                    "urli": reverse('admin:%s_%s_change' % (act._meta.app_label,  act._meta.model_name),  args=[act.pk]),
-                    'type': 'Actividad'
-                })
-            # end while
-        # end if
+        dates.append({
+            'pk': act.id,
+            'color': color,
+            'title': "%s" % (act.nombre, ),
+            'now': now.strftime("%Y-%m-%d %I:%M%p"),
+            'start': act.fecha_de_ejecucion.strftime("%Y-%m-%d"),
+            "urli": reverse('admin:%s_%s_change' % (act._meta.app_label,  act._meta.model_name),  args=[act.pk]),
+            "lugar": act.lugar.nombre,
+            'type': 'Actividad'
+        })
     # end for
     return dates
 # end def

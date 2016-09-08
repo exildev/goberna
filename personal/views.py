@@ -12,15 +12,15 @@ class Login(supra.SupraSession):
     # end def
 # end class
 
-
 class PersonaListView(supra.SupraListView):
 	list_display = ['identificacion', 'direccion', 'fecha_nacimiento', 'telefono', 'first_name', 'last_name', 'pk']
 	model = models.Persona
+	
 # end class
 
 class DepartamentoListView(supra.SupraListView):
 	model = models.Departamento
-	list_display = ['nombre', 'codigo', 'activo', 'pk']
+	list_display = ['nombre', 'codigo', 'activo', 'pk', ]
 	list_filter = list_display
 
 # end class

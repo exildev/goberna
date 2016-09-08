@@ -37,7 +37,7 @@ class Cargo(models.Model):
 
 
 class Empleado(Persona):
-    cargo = models.ForeignKey(Cargo, null=True, blank=True)
+    cargo = models.ForeignKey(Cargo)
 
     def __unicode__(self):
         return u'%s %s' % (self.first_name, self.last_name)

@@ -1,5 +1,5 @@
 {
- "host":"localhost",
+ "host":"192.168.0.103",
  "web_port":1192,
  "io_port":1196
 }

@@ -22,7 +22,7 @@ class DefaultTrigger(triggers.Trigger):
         return self.exlude
     # end def
 
-    def create(self, instance):
+    def save(self, instance):
         super(DefaultTrigger, self).create(instance)
         data = self.get_data(instance)
         send_to = []
