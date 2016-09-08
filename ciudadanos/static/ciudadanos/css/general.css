@@ -70,7 +70,7 @@ li.c1, li.c2, li.c3, li.c4, li.c5, li.c6, li.c7, li.c8, li.c9, li.c10, li.c11, l
     margin: 0;
     padding: 16px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 ul{
