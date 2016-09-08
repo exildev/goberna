@@ -8,7 +8,6 @@ class QuestionForm(forms.ModelForm):
 
     class Meta:
         model = models.Pregunta
-        fields = ('email', 'pregunta',)
         exclude = ('state', 'respuesta')
     # end class
 
