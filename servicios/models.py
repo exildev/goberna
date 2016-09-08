@@ -38,7 +38,7 @@ class RegistroProN(models.Model):
     fecha = models.DateField(auto_now=True)
 
     class Meta:
-        verbose_name = "Registro Profesionale(que no hacen rural)"
+        verbose_name = "Registro Profesional(que no hacen rural)"
         verbose_name_plural = "Registros Profesionales(que no hacen rural)"
     # end class
 
