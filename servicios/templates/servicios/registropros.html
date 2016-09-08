@@ -2,14 +2,54 @@
 {% block titulo %}Registro Profesional{% endblock %}
 {% block miga %}<a href="/">Inicio</a>{% endblock %}
 {% block content %}
-<form action="/servicios/registro/pro/si/" method="post" enctype="multipart/form-data"><input type='hidden' name='csrfmiddlewaretoken' value='rPtiFpdFzU2prAYN47ZKsmZtx82lj0uPGham1UO8MavdfexQ6ik2nNbNzEcIkHqP'/>
-  {% csrf_token %}
-  <ul>
-    {{form.as_ul}}
-    {% for fo in inlines %}
-        {{ fo.as_p }}
-    {% endfor %}
-    <li><input type="submit" value="Enviar"/></li>
+<form action="/servicios/registro/pro/si/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <ul>
+        <li>
+            <span>Copia del diploma:</span>
+            <div class="inp">
+                <input id="id_diploma" name="diploma" type="file" required />
+                <label for="id_diploma"><i class="micon">cloud_upload</i> <span>Seleccionar Archivo</span></label>
+            </div>
+        </li>
+        <li>
+            <span>Copia del acta de grado:</span>
+            <div class="inp">
+                <input id="id_acta" name="acta" type="file" required />
+                <label for="id_acta"><i class="micon">cloud_upload</i> <span>Seleccionar Archivo</span></label>
+            </div>
+        </li>
+        <li>
+            <span>Copia ampliada (150) de la cedula de ciudadania:</span>
+            <div class="inp">
+                <input id="id_cedula" name="cedula" type="file" required />
+                <label for="id_cedula"><i class="micon">cloud_upload</i> <span>Seleccionar Archivo</span></label>
+            </div>
+        </li>
+        <li>
+            <span>Resolucion de nombramiento del servicio social obligatorio:</span>
+            <div class="inp">
+                <input id="id_resolucion" name="resolucion" type="file" required />
+                <label for="id_resolucion"><i class="micon">cloud_upload</i> <span>Seleccionar Archivo</span></label>
+            </div>
+        </li>
+        <li>
+            <span>Acta posesion del rural:</span>
+            <div class="inp">
+                <input id="id_rural" name="rural" type="file" required />
+                <label for="id_rural"><i class="micon">cloud_upload</i> <span>Seleccionar Archivo</span></label>
+            </div>
+        </li>
+        <li>
+            <span>Certificado de culiminacion del año rural:</span>
+            <div class="inp">
+                <input id="id_certificado" name="certificado" type="file" required />
+                <label for="id_certificado"><i class="micon">cloud_upload</i> <span>Seleccionar Archivo</span></label>
+            </div>
+        </li>
+        <li>
+            <input type="submit" value="Enviar"/>
+        </li>
     </ul>
 </form>
 {% endblock %}
