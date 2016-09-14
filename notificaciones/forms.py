@@ -38,7 +38,7 @@ class DefaultTrigger(triggers.Trigger):
             "_send_to_": send_to,
             "exclude": self.get_exclude(instance)
         }
-
+        print obj
         if self.has_plugin('ioplugin'):
             self.emit_by('save', obj, 'ioplugin')
         # end if
