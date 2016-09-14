@@ -8,7 +8,7 @@ from personal import models as personal
 
 class Pregunta(models.Model):
     email = models.EmailField()
-    departamento = models.ForeignKey(personal.Departamento)
+    departamento = models.ForeignKey(personal.Departamento, verbose_name="Asunto")
     pregunta = models.TextField(max_length=2000)
     respuesta = models.CharField(max_length=2000, blank=True, null=True)
     state = models.BooleanField(default=False)

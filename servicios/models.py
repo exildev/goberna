@@ -19,12 +19,12 @@ class RegistroProS(models.Model):
     fecha = models.DateField(auto_now=True)
 
     class Meta:
-        verbose_name = "Registro Profecional"
-        verbose_name_plural = "Registros Profecionales"
+        verbose_name = "Registro Profesional"
+        verbose_name_plural = "Registros Profesionales"
     # end class
 
     def __unicode__(self):
-        return u"Registro Profecional %s %s"%(self.ciudadano.first_name, self.ciudadano
+        return u"Registro Profesional %s %s"%(self.ciudadano.first_name, self.ciudadano
         )
 # end class
 
@@ -38,12 +38,12 @@ class RegistroProN(models.Model):
     fecha = models.DateField(auto_now=True)
 
     class Meta:
-        verbose_name = "Registro Profecionale(que no hacen rural)"
-        verbose_name_plural = "Registros Profecionales(que no hacen rural)"
+        verbose_name = "Registro Profesional(que no hacen rural)"
+        verbose_name_plural = "Registros Profesionales(que no hacen rural)"
     # end class
 
     def __unicode__(self):
-        return u"Registro Profecionale(que no hacen rural) de %s %s"%(self.ciudadano.first_name, self.ciudadano
+        return u"Registro Profesional(que no hacen rural) de %s %s"%(self.ciudadano.first_name, self.ciudadano
         )
 # end class
 
@@ -58,11 +58,11 @@ class TarjetaPro(models.Model):
 
     class Meta:
         verbose_name = "Tarjeta Profesional"
-        verbose_name_plural = "Tarjetas Profecionales"
+        verbose_name_plural = "Tarjetas Profesionales"
     # end class
 
     def __unicode__(self):
-        return u"Registro Tarjeta profecional de %s %s" % (self.ciudadano.first_name, self.ciudadano.last_name)
+        return u"Registro Tarjeta profesional de %s %s" % (self.ciudadano.first_name, self.ciudadano.last_name)
     # end def
 # end class
 
