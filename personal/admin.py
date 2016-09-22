@@ -43,6 +43,7 @@ class EmpleadoAdmin(nested_admin.NestedModelAdmin):
         return super(EmpleadoAdmin, self).get_form(request, obj, *args, **kwargs)
     # end def
 
+admin_site._registry = admin.site._registry
 
 admin_site.register(models.Empleado, EmpleadoAdmin)
 admin_site.register(models.Departamento, DepartamentoAdmin)

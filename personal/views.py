@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 import models
  
 class Login(supra.SupraSession):
-
+    model = models.Empleado
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super(Login, self).dispatch(request, *args, **kwargs)
