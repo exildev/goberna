@@ -267,4 +267,4 @@ class DefaultIOPluing(triggers.TriggerIOPlugin):
     port = IO_PORT
 # end class
 
-triggers.triggers.register(ActividadCreateTrigger, [DefaultIOPluing, DefaultSMTPPlugin])
+triggers.triggers.register(ActividadCreateTrigger, [DefaultIOPluing, ])
