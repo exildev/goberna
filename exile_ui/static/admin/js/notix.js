@@ -17,7 +17,7 @@ Notix.prototype = {
 			'url': '/notificaciones/connections/',
 			success: function (data) {
 				self.socket = io(data);
-				console.log(self.socket);
+				console.log(self.socket); 
 				self.start(session_id);
 			}
 		});
@@ -28,7 +28,7 @@ Notix.prototype = {
 		this.socket.on('identify', function (message) {
 			console.log(message);
 			if (!message['ID']){
-				this.login();
+				this.login(); 
 			}else{
 				this.do_event();
 			}

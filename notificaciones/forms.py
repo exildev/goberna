@@ -10,6 +10,7 @@ from datetime import datetime
 from goberna.settings import BASE_DIR
 
 from actividades import models as actividades
+from personal import models as personal
 
 
 class DefaultTrigger(triggers.Trigger):
@@ -38,7 +39,7 @@ class DefaultTrigger(triggers.Trigger):
             "_send_to_": send_to,
             "exclude": self.get_exclude(instance)
         }
-
+        print obj
         if self.has_plugin('ioplugin'):
             self.emit_by('save', obj, 'ioplugin')
         # end if
@@ -217,7 +218,7 @@ class ActividadTrigger(CronTrigger):
 
 class ActividadCreateTrigger(DefaultTrigger):
     model = actividades.Actividad
-    types = [User]
+    types = [User, personal.Empleado]
     message = u"""Nueva reunion"""
 
     def get_data(self, instance):
@@ -266,5 +267,4 @@ class DefaultIOPluing(triggers.TriggerIOPlugin):
     port = IO_PORT
 # end class
 
-triggers.triggers.register(ActividadCreateTrigger, [DefaultIOPluing, DefaultSMTPPlugin])
-print "ddd"
+triggers.triggers.register(ActividadCreateTrigger, [DefaultIOPluing, ])

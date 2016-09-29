@@ -125,7 +125,7 @@ def calendar(request):
 
 def activities(request, start, end, now):
 
-    emplado = personal.Empleado.objects.filter(pk = request.user.pk)
+    emplado = personal.Empleado.objects.filter(pk = request.user.pk).first()
 
     acts = models.Actividad.objects.all().order_by('fecha_de_ejecucion')
 
