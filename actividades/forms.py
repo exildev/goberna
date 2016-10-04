@@ -22,9 +22,7 @@ class ActividadForm(forms.ModelForm):
     class Meta:
         model = models.Actividad
         exclude = ()
-        widgets = {
-            "fecha_de_ejecucion": DatePickerWidget(attrs={'class': 'date'}, format="%m/%d/%Y")
-        }
+        
     # end class
 
 # end class
