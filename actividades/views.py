@@ -145,7 +145,7 @@ def activities(request, start, end, now):
             'color': color,
             'title': "%s" % (act.nombre, ),
             'now': now.strftime("%Y-%m-%d %I:%M%p"),
-            'start': act.fecha_de_ejecucion.strftime("%Y-%m-%d"),
+            'start': act.fecha_de_ejecucion.strftime("%Y-%m-%d %H:%m%s"),
             "urli": reverse('admin:%s_%s_change' % (act._meta.app_label,  act._meta.model_name),  args=[act.pk]),
             "lugar": act.lugar.nombre,
             'type': 'Actividad'
