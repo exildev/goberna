@@ -685,14 +685,14 @@ table#change-history tbody th {
     height: 40px;
     padding: 10px 40px;
     padding-left: 0;
-    background: #4DB6AC;
+    background: #FEFEFE;
     line-height: 40px;
-    color: #ffc;
+    color: #E9843A;
     overflow: hidden;
     box-shadow: 0 0 3px 1px #000;
 }
 #header a:link, #header a:visited {
-    color: #fff;
+    color: #4A5154;
 }
 #header a:focus, #header a:hover {
     text-decoration: underline;
