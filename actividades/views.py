@@ -127,7 +127,7 @@ def activities(request, start, end, now):
 
     emplado = personal.Empleado.objects.filter(pk = request.user.pk).first()
 
-    acts = models.Actividad.objects.all().order_by('fecha_de_ejecucion')
+    acts = models.Actividad.objects.filter(fecha_de_ejecucion__gte=start, fecha_de_ejecucion__lte=end).order_by('fecha_de_ejecucion')
 
     if emplado and emplado.cargo:
         acts = acts.filter(Q(departamentos__pk=emplado.cargo.departamento.pk) | Q(personas__pk=emplado.pk))
