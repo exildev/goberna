@@ -71,7 +71,8 @@ def calendar(request):
     start = request.GET.get('start', False)
     end = request.GET.get('end', False)
     novedad_select = request.GET.get('novedad_select', '0')
-
+    print "este es", start
+    return 1
     dates = []
     now = datetime.now()
 
@@ -100,10 +101,11 @@ def calendar(request):
     
     if start and end:
         if novedad_select == '0' or novedad_select == '1':
-            dates = dates + activities(request, start, end, now)
+            #dates = dates + activities(request, start, end, now)
+            pass
         # end if
     # end if
-    return HttpResponse(json.dumps(dates, cls=DjangoJSONEncoder), content_type="application/json")
+    #return HttpResponse(json.dumps(dates, cls=DjangoJSONEncoder), content_type="application/json")
 # end def
 
 def seguimientos(request, start, end, now):
