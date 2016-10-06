@@ -126,7 +126,7 @@ def calendar(request):
 def activities(request, start, end, now):
 
     emplado = personal.Empleado.objects.filter(pk = request.user.pk).first()
-
+    print start.strftime("%Y-%m-%d %H:%m:%s"), end.strftime("%Y-%m-%d %H:%m:%s")
     acts = models.Actividad.objects.filter(fecha_de_ejecucion__gte=start, fecha_de_ejecucion__lte=end).order_by('fecha_de_ejecucion')
 
     if emplado and emplado.cargo:
