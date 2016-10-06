@@ -23,7 +23,7 @@ import json
 def verify(request, session_id):
     session = Session.objects.get(session_key=session_id)
     uid = session.get_decoded().get('_auth_user_id')
-    usertypes = [User, Empleado]
+    usertypes = [Empleado, User, ]
     for tipo in usertypes:
         user = tipo.objects.filter(pk=uid).first()
         if user:
